@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>About Me | Gavin Lim</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+    <script src="script.js" defer></script>
+
+    <style>
+        /* Page-specific styles to keep layout consistent across screens */
+        .about-container {
+            max-width: 980px;
+        }
+
+        .about-text p {
+            line-height: 1.75;
+            margin-bottom: 1rem;
+        }
+
+        .resume-link a {
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .resume-link a:hover {
+            text-decoration: underline;
+        }
+
+        .photo-card {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            background: #fff;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 340px;
+            object-fit: cover;
+            display: block;
+        }
+
+        @media (max-width: 992px) {
+            .photo-card img {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .photo-card img {
+                height: 240px;
+            }
+        }
+
+        .pdf-card {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            background: #fff;
+        }
+
+        .pdf-card iframe {
+            width: 100%;
+            height: 720px;
+            border: 0;
+            display: block;
+        }
+
+        @media (max-width: 576px) {
+            .pdf-card iframe {
+                height: 520px;
+            }
+        }
+
+        .note {
+            text-align: center;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            background: rgba(0, 0, 0, 0.03);
+            max-width: 980px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Your existing nav -->
+    <div class="topnav" id="myTopnav">
+        <a href="index.html">Home</a>
+        <a class="active" href="about.html">About</a>
+        <a href="weekone.html">Final Project</a>
+    </div>
+
+    <main class="container about-container py-4 py-md-5">
+        <header class="text-center mb-4">
+            <h1 class="fw-bold">About Me</h1>
+        </header>
+
+        <section class="about-text">
+            <p>
+                Hello, my name is <b>Gavin Lim</b>. I was born in Singapore and grew up in Jakarta, Indonesia. I am
+                currently a student at <b>Cornell University</b> pursuing a <b>B.A. in Computer Science</b> with a minor
+                in
+                <b>Mechanical Engineering</b>. I’m especially interested in robotics, autonomous systems, and hardware
+                that lives
+                at the intersection of software and physical design. At Cornell, I am involved in <b>Combat Robotics
+                    (CRC)</b>, where I design and fabricate competitive
+                battlebots.
+                I’ve worked on mechanical subsystems for a 3 lb full-body spinner, refined chassis geometry using Fusion
+                360, and contributed to a vision-based
+                human–battlebot
+                teleoperation system using YOLO pose estimation.
+            </p>
+
+            <p>
+                Beyond robotics, I’m deeply interested in performance machines — especially
+                <b>trophy trucks</b>. I’m fascinated by how suspension geometry, power delivery, and control systems
+                enable vehicles to survive extreme terrain at high speeds. I also love playing the <b>acoustic
+                    guitar</b> — especially John
+                Mayer’s live playing — and have spent years learning fingerstyle and blues progressions.
+            </p>
+
+            <p>
+                I also love music — I enjoy singing and I’m a member of <b>UNMUTE Musicians</b>, where I create music
+                videos. I play a variety of styles, from classical piano to country guitar, often singing while
+                accompanying
+                myself. Outside of academics, I play basketball regularly and train consistently in the gym.
+            </p>
+
+        </section>
+
+        <!-- Images -->
+        <section class="mt-4">
+            <div class="row g-3">
+                <div class="col-12 col-md-6">
+                    <div class="photo-card">
+                        <img src="IMG_1407.jpg" alt="Photo of Gavin Lim">
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="photo-card">
+                        <img src="CRC.JPG" alt="Combat Robotics at Cornell">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PDF Preview (after images, before note) -->
+        <section class="mt-4">
+            <h2 class="h5 fw-bold mb-2">Resume Preview</h2>
+            <div class="pdf-card">
+                <iframe src="Gavin_Lim_Resume_2026.pdf#view=FitH" title="Gavin Lim Resume PDF Preview"
+                    loading="lazy"></iframe>
+            </div>
+            <p class="small text-secondary mt-2 mb-0">
+                If the preview doesn’t load, you can
+                <a href="Gavin_Lim_Resume_2026.pdf" target="_blank" rel="noopener noreferrer">open the PDF</a>.
+            </p>
+        </section>
+
+        <!-- Note AFTER images + PDF -->
+        <section class="mt-4">
+            <div class="note">
+                This website was originally created as my digital portfolio for
+                <b>PHYS S-12: Introduction to Digital Fabrication</b> at the Harvard Secondary School Program during the
+                summer of 2024.
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

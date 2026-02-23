@@ -1,0 +1,245 @@
+body {
+    line-height: 2.5;
+    padding-top: 75px;
+}
+
+.topnav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease;
+}
+
+.topnav a {
+    display: inline-block;
+    color: #333;
+    text-align: center;
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 16px;
+    white-space: nowrap;
+    transition: color 0.5s ease;
+}
+
+.topnav a:hover {
+    color: #007BFF;
+}
+
+.center {
+    text-align: center;
+}
+
+#center {
+    text-align: center;
+}
+
+#homePage {
+    padding: 230px 0;
+}
+
+#aboutPage {
+    padding: 20px 20px 20px;
+    /* Adjust the padding-top value to increase the gap */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #333;
+    width: 50%;
+    /* Adjust this width based on your preference */
+    margin: 0 auto;
+    /* Center the element */
+}
+
+.imageShadow img,
+.imageShadow video {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+    /* Adding a subtle box shadow */
+}
+
+div {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}
+
+.description {
+    padding-left: 230px;
+    padding-right: 230px;
+    font-size: 15.5px;
+    text-align: justify;
+}
+
+.image-container {
+    text-align: center;
+}
+
+.image-container img {
+    display: inline-block;
+    max-width: 40%;
+    height: auto;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+}
+
+.subheading {
+    font-size: 21px;
+    font-weight: bold;
+    font-style: italic;
+    color: #007BFF;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.subsubheading {
+    font-size: 21px;
+    font-style: italic;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.heading {
+    font-size: 45px;
+}
+
+#darker {
+    color: #777070;
+    font-size: 35px;
+}
+
+/* Start of Citation (Use of ChatGPT) */
+@import url('https://fonts.googleapis.com/css2?family=Monaco&display=swap');
+
+.code-section {
+    background-color: #272822;
+    padding: 20px;
+    border-radius: 8px;
+    font-family: 'Monaco', monospace;
+    /* Changed to Monaco font */
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0 auto;
+    max-width: 900px;
+    overflow-x: auto;
+    color: #f8f8f8;
+    position: relative;
+}
+
+.code-section code {
+    display: block;
+    white-space: pre;
+    word-wrap: normal;
+    color: #f8f8f8;
+}
+
+.code-section code::before {
+    content: attr(class);
+    display: block;
+    margin-bottom: 0.5em;
+    color: #ef626c;
+}
+
+/* End of Citation */
+
+.btn {
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 20px 40px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+    background-color: RoyalBlue;
+}
+
+#title {
+    font-size: 80px;
+    position: absolute;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    /* Remove any default margin */
+}
+
+#copyButton {
+    position: absolute;
+    top: 30px;
+    /* adjust as needed */
+    right: 30px;
+    /* adjust as needed */
+    font-size: 1em;
+    padding: 10px;
+    color: #fff;
+    background-color: #009578;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#copyButton:hover {
+    background-color: #00664e;
+}
+
+#copyButton:active {
+    background-color: #004d39;
+}
+
+#scrollMessage {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+    font-style: italic;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates 3 equal-width columns */
+    grid-gap: 30px; /* Adjust this for desired space between boxes */
+    padding: 20px; /* Add some padding around the container for better visuals */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.box {
+    border: 2px solid #007BFF;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    color: #007BFF;
+    text-decoration: none;
+    width: 100%; /* Make the box fill the grid cell */
+    height: 22vh; /* Set height to 80% of the viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 20px;
+    font-size: 18px; /* Make the text a bit larger */
+    line-height: 24px; /* Control the spacing between lines of text */
+    box-sizing: border-box; /* Include padding and border in element's total height */
+}
+.box:hover {
+    background-color: #007BFF;
+    color: white;
+    transform: scale(1.05); /* Make the box grow a bit on hover */
+}
+
+
+
+
