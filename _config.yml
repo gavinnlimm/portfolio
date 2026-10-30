@@ -1,0 +1,5 @@
+# Keep project notes out of the published site
+exclude:
+  - README.md
+  - PRODUCT.md
+  - DESIGN.md

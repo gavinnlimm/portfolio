@@ -1,10 +1,10 @@
-/* Two scroll scenes on the Taste Skill stage (js/stage.js). Native scroll, scrubbed by position.
+/* The scroll scene on the Taste Skill stage (js/stage.js). Native scroll, scrubbed by position.
    Without script, under reduced motion, or if GSAP fails to load, each section shows its finished
    composition (see .scene:not(.is-live) in css/site.css). */
 (() => {
   window.Scenes = window.Scenes || {};
 
-  /* What I've measured: each figure arrives with its own photograph, holds, and leaves upward. */
+  /* Four numbers: each figure arrives with its own photograph, holds, and leaves upward. */
   Scenes.figures = (root, opts = {}) => Stage.scene(root, {
     hold: opts.hold ?? 3,
     scrub: true,
@@ -33,22 +33,6 @@
           tl.to(cap, { autoAlpha: 0, y: -18, duration: seg * 0.14, ease: 'power1.in' }, t0 + seg * 0.62);
         }
       });
-    },
-  });
-
-  /* GuitarBox opens: the photograph grows from a window to the whole screen; the name steps back and the
-     caption arrives on its scrim. */
-  Scenes.open = (root, opts = {}) => Stage.scene(root, {
-    hold: opts.hold ?? 2,
-    scrub: true,
-    build(tl, { q, phone }) {
-      const win = q('.open__win');
-      const img = q('.open__win img');
-      const start = phone ? 'inset(28% 12% 28% 12%)' : 'inset(26% 34% 26% 34%)';
-      tl.fromTo(win, { clipPath: start }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.58, ease: 'power2.inOut' }, 0)
-        .fromTo(img, { scale: 1.22 }, { scale: 1, duration: 0.62, ease: 'power1.out' }, 0)
-        .fromTo(q('.open__title'), { yPercent: 0, autoAlpha: 1 }, { yPercent: -45, autoAlpha: 0, duration: 0.18, ease: 'power1.in' }, 0.52)
-        .fromTo(q('.open__cap'), { autoAlpha: 0, y: 36 }, { autoAlpha: 1, y: 0, duration: 0.18, ease: 'power2.out' }, 0.66);
     },
   });
 

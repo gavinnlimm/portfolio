@@ -1,32 +1,38 @@
-window.onscroll = function () {
-    var topnav = document.getElementById("myTopnav");
-    var scrollHeight = window.pageYOffset;
-    var opacity = 1 - scrollHeight / 250; // change the denominator to control the speed of fading
+/* GuitarBox build log. Plain JS, no dependencies. */
+(() => {
+  /* Copy buttons: each copies the code block it names. */
+  document.querySelectorAll('[data-copy]').forEach((button) => {
+    const code = document.getElementById(button.dataset.copy);
+    let reset = 0;
+    button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(code.textContent);
+        button.textContent = 'Copied';
+        button.classList.add('is-done');
+      } catch (err) {
+        button.textContent = 'Select the code to copy it';
+      }
+      clearTimeout(reset);
+      reset = setTimeout(() => {
+        button.textContent = 'Copy code';
+        button.classList.remove('is-done');
+      }, 2400);
+    });
+  });
 
-    // Set the opacity of the top navigation bar
-    topnav.style.opacity = opacity.toFixed(2); // Round to 2 decimal places to avoid flickering
-
-    var scrollMessage = document.getElementById('scrollMessage');
-    if (scrollHeight > 0) {
-        scrollMessage.style.opacity = 0; // Hide the scroll message after scrolling
-    } else {
-        scrollMessage.style.opacity = 1; // Show the scroll message when at the top
+  /* Contents: mark the section being read. */
+  const links = [...document.querySelectorAll('.toc__list a')];
+  const sections = links.map((a) => document.querySelector(a.getAttribute('href')));
+  if (!('IntersectionObserver' in window) || !links.length) return;
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      const i = sections.indexOf(e.target);
+      links.forEach((a, k) => {
+        if (k === i) a.setAttribute('aria-current', 'location');
+        else a.removeAttribute('aria-current');
+      });
     }
-};
-
-// Function made from ChatGPT
-function copyCode() {
-    var code = document.getElementById("codeBlock").innerText;
-    var dummy = document.createElement("textarea");
-    document.body.appendChild(dummy);
-    dummy.value = code;
-    dummy.select();
-    document.execCommand("copy");
-    document.body.removeChild(dummy);
-    // Change button text to show copying is done
-    document.getElementById("copyButton").innerText = "Code Copied!";
-    // Change button text back after 3 seconds
-    setTimeout(function () {
-        document.getElementById("copyButton").innerText = "Copy Code";
-    }, 3000);
-}
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach((s) => s && io.observe(s));
+})();

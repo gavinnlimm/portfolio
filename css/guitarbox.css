@@ -1,245 +1,468 @@
-body {
-    line-height: 2.5;
-    padding-top: 75px;
+/* GuitarBox build log. Inherits site.css: tokens, the split hero, links and buttons. */
+
+html {
+    scroll-padding-top: 32px;
 }
 
-.topnav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 70px;
-    z-index: 10;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 0.5s ease;
-}
+/* Log: a sticky contents column beside one reading column ------------------ */
 
-.topnav a {
-    display: inline-block;
-    color: #333;
-    text-align: center;
-    padding: 15px 25px;
-    text-decoration: none;
-    font-size: 16px;
-    white-space: nowrap;
-    transition: color 0.5s ease;
-}
-
-.topnav a:hover {
-    color: #007BFF;
-}
-
-.center {
-    text-align: center;
-}
-
-#center {
-    text-align: center;
-}
-
-#homePage {
-    padding: 230px 0;
-}
-
-#aboutPage {
-    padding: 20px 20px 20px;
-    /* Adjust the padding-top value to increase the gap */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: #333;
-    width: 50%;
-    /* Adjust this width based on your preference */
-    margin: 0 auto;
-    /* Center the element */
-}
-
-.imageShadow img,
-.imageShadow video {
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
-    /* Adding a subtle box shadow */
-}
-
-div {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.image {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 30%;
-}
-
-.description {
-    padding-left: 230px;
-    padding-right: 230px;
-    font-size: 15.5px;
-    text-align: justify;
-}
-
-.image-container {
-    text-align: center;
-}
-
-.image-container img {
-    display: inline-block;
-    max-width: 40%;
-    height: auto;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
-}
-
-.subheading {
-    font-size: 21px;
-    font-weight: bold;
-    font-style: italic;
-    color: #007BFF;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px;
-}
-
-.subsubheading {
-    font-size: 21px;
-    font-style: italic;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px;
-}
-
-.heading {
-    font-size: 45px;
-}
-
-#darker {
-    color: #777070;
-    font-size: 35px;
-}
-
-/* Start of Citation (Use of ChatGPT) */
-@import url('https://fonts.googleapis.com/css2?family=Monaco&display=swap');
-
-.code-section {
-    background-color: #272822;
-    padding: 20px;
-    border-radius: 8px;
-    font-family: 'Monaco', monospace;
-    /* Changed to Monaco font */
-    font-size: 14px;
-    line-height: 1.6;
-    margin: 0 auto;
-    max-width: 900px;
-    overflow-x: auto;
-    color: #f8f8f8;
-    position: relative;
-}
-
-.code-section code {
-    display: block;
-    white-space: pre;
-    word-wrap: normal;
-    color: #f8f8f8;
-}
-
-.code-section code::before {
-    content: attr(class);
-    display: block;
-    margin-bottom: 0.5em;
-    color: #ef626c;
-}
-
-/* End of Citation */
-
-.btn {
-    background-color: DodgerBlue;
-    border: none;
-    color: white;
-    padding: 20px 40px;
-    cursor: pointer;
-    font-size: 17px;
-}
-
-/* Darker background on mouse-over */
-.btn:hover {
-    background-color: RoyalBlue;
-}
-
-#title {
-    font-size: 80px;
-    position: absolute;
-    top: 38%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0;
-    /* Remove any default margin */
-}
-
-#copyButton {
-    position: absolute;
-    top: 30px;
-    /* adjust as needed */
-    right: 30px;
-    /* adjust as needed */
-    font-size: 1em;
-    padding: 10px;
-    color: #fff;
-    background-color: #009578;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#copyButton:hover {
-    background-color: #00664e;
-}
-
-#copyButton:active {
-    background-color: #004d39;
-}
-
-#scrollMessage {
-    position: fixed;
-    bottom: 10px;
-    width: 100%;
-    text-align: center;
-    opacity: 1;
-    transition: opacity 0.5s ease-out;
-    font-style: italic;
-}
-
-.grid-container {
+.log {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Creates 3 equal-width columns */
-    grid-gap: 30px; /* Adjust this for desired space between boxes */
-    padding: 20px; /* Add some padding around the container for better visuals */
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--m);
+    padding: clamp(96px, 10vw, 160px) var(--m) clamp(96px, 10vw, 160px);
 }
 
-.box {
-    border: 2px solid #007BFF;
-    padding: 20px;
-    text-align: center;
-    transition: all 0.3s ease;
-    color: #007BFF;
-    text-decoration: none;
-    width: 100%; /* Make the box fill the grid cell */
-    height: 22vh; /* Set height to 80% of the viewport height */
+.toc {
+    grid-column: 1 / 4;
+    align-self: start;
+    position: sticky;
+    top: 32px;
+}
+
+.toc__title {
+    font-size: var(--step-small);
+    color: var(--muted);
+    margin-bottom: 12px;
+}
+
+.toc__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.toc__list a {
     display: flex;
-    justify-content: center;
     align-items: center;
-    flex-direction: column;
-    border-radius: 20px;
-    font-size: 18px; /* Make the text a bit larger */
-    line-height: 24px; /* Control the spacing between lines of text */
-    box-sizing: border-box; /* Include padding and border in element's total height */
-}
-.box:hover {
-    background-color: #007BFF;
-    color: white;
-    transform: scale(1.05); /* Make the box grow a bit on hover */
+    min-height: 40px;
+    padding: 0 14px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color var(--t-hover) ease, background-color var(--t-hover) ease;
 }
 
+.toc__list a[aria-current] {
+    color: var(--ink);
+    background: var(--surface);
+}
 
+@media (hover: hover) and (pointer: fine) {
+    .toc__list a:hover {
+        color: var(--ink);
+    }
+}
 
+.log__body {
+    grid-column: 4 / 12;
+    min-width: 0;
+}
 
+.sec + .sec {
+    margin-top: clamp(112px, 11vw, 176px);
+}
+
+.sec > .head {
+    margin-bottom: 40px;
+}
+
+.sec p {
+    max-width: 66ch;
+}
+
+.sec p + p {
+    margin-top: 1.1em;
+}
+
+.sec .lead {
+    max-width: 40ch;
+    margin-bottom: 32px;
+}
+
+.sub {
+    font-size: var(--step-lead);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+    margin: 88px 0 20px;
+}
+
+/* Photographs: each row shares one height, so nothing is cropped ----------- */
+
+.shot {
+    margin: 48px 0;
+}
+
+.shot img {
+    width: 100%;
+    height: auto;
+    background: var(--surface);
+}
+
+.shot__row {
+    display: flex;
+    gap: 12px;
+}
+
+.shot__row + .shot__row,
+.shot > img + .shot__row {
+    margin-top: 12px;
+}
+
+.shot__row img {
+    flex: var(--ar) 1 0;
+    min-width: 0;
+}
+
+.shot figcaption {
+    margin-top: 12px;
+    font-size: var(--step-small);
+    color: var(--muted);
+}
+
+.video {
+    margin: 0;
+    aspect-ratio: 16 / 9;
+    background: var(--surface);
+}
+
+.video iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Initial plan --------------------------------------------------------------- */
+
+.parts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.parts li {
+    background: var(--surface);
+    padding: clamp(24px, 2.6vw, 36px);
+}
+
+.parts__count {
+    display: block;
+    margin-bottom: 10px;
+    font-size: var(--step-small);
+    color: #ff7a70;
+}
+
+.parts h3 {
+    font-size: var(--step-lead);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+    margin-bottom: 14px;
+}
+
+.io {
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--m);
+}
+
+.io dt {
+    font-size: var(--step-small);
+    color: var(--muted);
+    margin-bottom: 6px;
+}
+
+.io dd {
+    margin: 0;
+    font-size: var(--step-lead);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+}
+
+/* Equipment ------------------------------------------------------------------ */
+
+.kit {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.kit li {
+    padding: 14px 18px;
+    background: var(--surface);
+}
+
+/* Code ----------------------------------------------------------------------- */
+
+.code {
+    margin: 32px 0 0;
+    background: var(--surface);
+}
+
+.code__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 8px 8px 8px 20px;
+    font-size: var(--step-small);
+    color: var(--muted);
+    border-bottom: 1px solid var(--bg);
+}
+
+.code__copy {
+    min-height: 40px;
+    padding: 0 16px;
+    background: var(--bg);
+    color: var(--ink);
+    border: 0;
+    font: inherit;
+    font-size: var(--step-small);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color var(--t-hover) ease, transform var(--t-press) var(--ease-out);
+}
+
+.code__copy:active {
+    transform: scale(0.97);
+}
+
+.code__copy.is-done {
+    background: var(--accent);
+    color: var(--accent-ink);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .code__copy:hover {
+        background: var(--accent);
+        color: var(--accent-ink);
+    }
+}
+
+.code pre {
+    margin: 0;
+    padding: 20px;
+    max-height: 70svh;
+    overflow: auto;
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    tab-size: 4;
+    color: var(--ink);
+    scrollbar-color: var(--muted) transparent;
+    scrollbar-width: thin;
+}
+
+/* Folded first version */
+.fold {
+    margin-top: 56px;
+}
+
+.fold summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    min-height: 64px;
+    padding: 14px 18px;
+    background: var(--surface);
+    font-size: var(--step-lead);
+    letter-spacing: -0.015em;
+    cursor: pointer;
+    list-style: none;
+}
+
+.fold summary::-webkit-details-marker {
+    display: none;
+}
+
+.fold .code {
+    margin-top: 2px;
+}
+
+/* a plus that turns into a cross when open, as in the home page's rows */
+.fold__icon {
+    position: relative;
+    flex: none;
+    width: 28px;
+    height: 28px;
+    background: var(--bg);
+    transition: transform var(--t-ui) var(--ease-out), background-color var(--t-hover) ease;
+}
+
+.fold__icon::before,
+.fold__icon::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 12px;
+    height: 2px;
+    margin: -1px 0 0 -6px;
+    background: currentColor;
+}
+
+.fold__icon::after {
+    transform: rotate(90deg);
+}
+
+.fold[open] .fold__icon {
+    transform: rotate(45deg);
+    background: var(--accent);
+    color: var(--accent-ink);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .fold summary:hover .fold__icon {
+        background: var(--accent);
+        color: var(--accent-ink);
+    }
+}
+
+/* Amplifier: a narrow photo beside its paragraphs */
+.aside {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    gap: var(--m);
+    align-items: start;
+    margin-top: 88px;
+}
+
+.aside__pic {
+    margin: 0;
+}
+
+.aside__text .sub {
+    margin-top: 0;
+}
+
+/* Downloads */
+.get {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    margin-top: 40px;
+}
+
+.get span {
+    font-size: var(--step-small);
+    color: var(--muted);
+}
+
+/* Final product: the light field, as on the home page ----------------------- */
+
+.final {
+    padding: clamp(96px, 10vw, 160px) var(--m);
+    background: var(--field);
+    color: var(--field-ink);
+}
+
+.final > .head {
+    margin-bottom: 48px;
+}
+
+.final__grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--m);
+    align-items: end;
+}
+
+.final .shot {
+    grid-column: 1 / 9;
+    margin: 0;
+}
+
+.final .shot img {
+    background: #d9d8d2;
+}
+
+.final__close {
+    grid-column: 9 / 13;
+    display: grid;
+    gap: 32px;
+    justify-items: start;
+}
+
+.final__actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px 28px;
+}
+
+.end {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    padding: 28px var(--m) 32px;
+    font-size: var(--step-small);
+    color: var(--muted);
+}
+
+.end .link {
+    color: var(--ink);
+}
+
+/* Tablet and phone --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+    .log {
+        display: block;
+    }
+
+    .toc {
+        display: none;
+    }
+
+    .final__grid {
+        display: block;
+    }
+
+    .final__close {
+        margin-top: 56px;
+    }
+}
+
+@media (max-width: 640px) {
+    .parts,
+    .io,
+    .aside {
+        grid-template-columns: 1fr;
+    }
+
+    .io {
+        gap: 24px;
+    }
+
+    .kit {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .aside__pic {
+        max-width: 280px;
+    }
+
+    .shot__row {
+        gap: 8px;
+    }
+
+    .shot__row + .shot__row,
+    .shot > img + .shot__row {
+        margin-top: 8px;
+    }
+
+    .sub {
+        margin-top: 64px;
+    }
+}

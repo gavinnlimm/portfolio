@@ -22,6 +22,18 @@
     reveals.forEach((el) => el.classList.add('is-in'));
   }
 
+  /* Section bar: shown once the hero has scrolled away, out of the tab order while hidden. */
+  const dock = document.querySelector('.dock');
+  const hero = document.querySelector('.hero');
+  if (dock && hero && 'IntersectionObserver' in window) {
+    dock.inert = true;
+    new IntersectionObserver(([e]) => {
+      const show = !e.isIntersecting;
+      dock.classList.toggle('is-shown', show);
+      dock.inert = !show;
+    }, { rootMargin: '-80px 0px 0px 0px' }).observe(hero);
+  }
+
   /* Experience. "Current" (full ink + its picture) follows hover, focus and scroll;
      "open" (the description) changes only on click or Enter, so nothing reflows under the pointer. */
   const rows = [...document.querySelectorAll('.row')];
@@ -38,9 +50,11 @@
       const on = k === i;
       row.classList.toggle('is-active', on);
       row.querySelector('.row__head').setAttribute('aria-expanded', String(on));
+      row.querySelector('.row__body').inert = !on;
     });
     setCurrent(i);
   }
+  rows.forEach((row) => { row.querySelector('.row__body').inert = !row.classList.contains('is-active'); });
 
   rows.forEach((row, i) => {
     const head = row.querySelector('.row__head');
@@ -64,11 +78,33 @@
 
   /* The one moving picture: plays only while on screen, never under reduced motion. */
   const loops = document.querySelectorAll('video[data-loop]');
+  loops.forEach((v) => {
+    const toggle = v.parentElement.querySelector('.clip__toggle');
+    if (!toggle) return;
+    const label = () => {
+      const paused = v.paused;
+      toggle.textContent = paused ? 'Play' : 'Pause';
+      toggle.setAttribute('aria-pressed', String(paused));
+    };
+    toggle.addEventListener('click', () => {
+      if (v.paused) {
+        v.dataset.held = '';
+        if (v.preload === 'none') { v.preload = 'auto'; v.load(); }
+        v.play().catch(() => {});
+      } else {
+        v.dataset.held = '1';
+        v.pause();
+      }
+    });
+    v.addEventListener('play', label);
+    v.addEventListener('pause', label);
+    label();
+  });
   if ('IntersectionObserver' in window) {
     const vio = new IntersectionObserver((entries) => {
       for (const e of entries) {
         const v = e.target;
-        if (e.isIntersecting && !reduce.matches && !document.hidden) {
+        if (e.isIntersecting && !reduce.matches && !document.hidden && !v.dataset.held) {
           if (v.preload === 'none') { v.preload = 'auto'; v.load(); }
           v.play().catch(() => {});
         } else { v.pause(); }
@@ -81,8 +117,10 @@
   /* GuitarBox: six square-wave pitches, as the Arduino played them. */
   const box = document.querySelector('.box');
   if (!box) return;
+  const stateEl = box.querySelector('.box__state');
   const noteEl = box.querySelector('.box__note');
   const stringEl = box.querySelector('.box__string');
+  const hintEl = box.querySelector('.box__hint');
   const canvas = box.querySelector('.box__wave');
   const ctx2d = canvas.getContext('2d');
   const keys = [...box.querySelectorAll('.key')];
@@ -96,7 +134,7 @@
   function drawWave(moving) {
     const w = canvas.width, h = canvas.height;
     ctx2d.clearRect(0, 0, w, h);
-    ctx2d.strokeStyle = '#dfe9ff';
+    ctx2d.strokeStyle = '#6fd3ff';
     ctx2d.lineWidth = 3;
     ctx2d.beginPath();
     const period = Math.max(18, 9000 / hz);      // higher pitch, tighter wave
@@ -114,14 +152,21 @@
     const on = performance.now() < playingUntil;
     drawWave(on && !reduce.matches);
     if (on) raf = requestAnimationFrame(loop);
-    else { raf = 0; keys.forEach((k) => k.classList.remove('is-on')); }
+    else {
+      raf = 0;
+      keys.forEach((k) => k.setAttribute('aria-pressed', 'false'));
+      stateEl.textContent = 'Not Pressed';
+      noteEl.textContent = 'No Tone';
+      stringEl.textContent = 'Press a string below';
+    }
   }
 
   function play(key) {
     hz = Number(key.dataset.hz);
-    noteEl.textContent = key.dataset.note;
-    stringEl.textContent = 'String ' + key.dataset.string + ', ' + hz + ' Hz';
-    keys.forEach((k) => k.classList.toggle('is-on', k === key));
+    stateEl.textContent = 'Pressed';
+    noteEl.textContent = key.dataset.note + ', String ' + key.dataset.string;
+    stringEl.textContent = hz + ' Hz';
+    keys.forEach((k) => k.setAttribute('aria-pressed', String(k === key)));
 
     try {
       audio = audio || new (window.AudioContext || window.webkitAudioContext)();
@@ -143,7 +188,12 @@
       osc.start(now);
       osc.stop(now + 2.3);
       voice = { osc, gain };
-    } catch (err) { /* no audio: the screen still shows the pitch */ }
+      if (audio.state === 'suspended') setTimeout(() => { if (audio.state !== 'running') hintEl.classList.add('is-loud'); }, 400);
+    } catch (err) {
+      /* no audio: the screen still shows the pitch, and the hint says why it is silent */
+      hintEl.textContent = 'This browser can’t play sound here. The screen still shows each pitch.';
+      hintEl.classList.add('is-loud');
+    }
 
     playingUntil = performance.now() + 2200;
     if (!raf) raf = requestAnimationFrame(loop);
