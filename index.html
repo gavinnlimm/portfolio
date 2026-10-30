@@ -63,32 +63,43 @@
         </figure>
     </header>
 
+    <nav class="dock" aria-label="Sections">
+        <a class="dock__name" href="#top">Gavin Lim</a>
+        <div class="dock__links">
+            <a href="#experience">Experience</a>
+            <a href="#crc">Robots</a>
+            <a href="#guitarbox">GuitarBox</a>
+            <a class="dock__about" href="#about">About</a>
+            <a href="mailto:gl568@cornell.edu?subject=Hello%20Gavin">Email</a>
+        </div>
+    </nav>
+
     <main>
-        <!-- Scene: what I've measured (type family) -->
-        <section class="scene figures" id="numbers" data-scene="figures" data-options='{"hold": 3}'
+        <!-- Scene: four numbers, each with its proof (type family) -->
+        <section class="scene figures" id="numbers" data-scene="figures" data-options='{"hold": 2}'
             aria-labelledby="numbers-title">
             <div class="scene-stage">
-                <h2 class="figures__title" id="numbers-title">What I’ve measured</h2>
+                <h2 class="figures__title" id="numbers-title">My work in four numbers</h2>
                 <ol class="figs" role="list">
                     <li class="fig">
-                        <figure class="fig__pic"><img src="img/stretch-can.jpg" width="1200" height="1600" loading="lazy" alt="The Stretch holding a can in its gripper"></figure>
+                        <figure class="fig__pic"><img src="img/stretch-can.jpg" width="1200" height="1600" loading="lazy" alt="The lab’s Hello Robot Stretch holding a can in its gripper beside a table marked with ArUco tags"></figure>
                         <p class="fig__num"><span>20</span></p>
-                        <p class="fig__cap"><span class="fig__count">1 of 4</span>End-to-end runs of my Stretch pick-and-place pipeline at the HRC² Lab, with no human input.</p>
+                        <p class="fig__cap"><span class="fig__count">1 of 4</span>End-to-end runs of my Stretch pick-and-place pipeline at the HRC² Lab, with no human input. <a class="link" href="https://github.com/gavinnlimm/stretch-picknplace">See the code</a></p>
                     </li>
                     <li class="fig">
-                        <figure class="fig__pic"><img src="img/stretch-rviz.jpg" width="1600" height="1200" loading="lazy" alt="RViz view of the Stretch localized on its map"></figure>
+                        <figure class="fig__pic"><img src="img/stretch-rviz.jpg" width="1600" height="1200" loading="lazy" alt="RViz showing the navigation costmap and the Stretch localized on its map after reaching a goal"></figure>
                         <p class="fig__num"><span>&lt;1&nbsp;cm</span></p>
-                        <p class="fig__cap"><span class="fig__count">2 of 4</span>How closely the robot’s depth perception finds the can it is about to grab.</p>
+                        <p class="fig__cap"><span class="fig__count">2 of 4</span>How closely the robot’s depth perception finds the can it is about to grab. <a class="link" href="https://github.com/gavinnlimm/stretch-picknplace">See the code</a></p>
                     </li>
                     <li class="fig">
-                        <figure class="fig__pic"><img src="img/california-roll.png" width="1120" height="748" loading="lazy" alt="CAD render of California Roll"></figure>
+                        <figure class="fig__pic"><img src="img/crc-team-2026.jpg" width="1800" height="1202" loading="lazy" alt="The Combat Robotics at Cornell team in their workshop, holding their robots"></figure>
                         <p class="fig__num"><span>1&nbsp;lb</span></p>
-                        <p class="fig__cap"><span class="fig__count">3 of 4</span>California Roll, the antweight vertical drum spinner I engineered for NHRL with Combat Robotics.</p>
+                        <p class="fig__cap"><span class="fig__count">3 of 4</span>The weight class of California Roll, the vertical drum spinner I engineered with Combat Robotics. <a class="link" href="docs/California_Roll_Report_Spring_2026.pdf">Read the report (PDF)</a></p>
                     </li>
                     <li class="fig">
-                        <figure class="fig__pic"><img src="img/tuning-box-front.jpg" width="1600" height="1200" loading="lazy" alt="GuitarBox, the cardboard Arduino tuner"></figure>
+                        <figure class="fig__pic"><img src="img/tuning-box-front.jpg" width="1600" height="1200" loading="lazy" alt="GuitarBox: a press-fit cardboard box with an OLED screen and a row of six buttons"></figure>
                         <p class="fig__num"><span>10</span></p>
-                        <p class="fig__cap"><span class="fig__count">4 of 4</span>GuitarBox tuners I built and gave to guitarists in Cambridge.</p>
+                        <p class="fig__cap"><span class="fig__count">4 of 4</span>GuitarBox tuners I built and gave to guitarists in Cambridge. <a class="link" href="guitarbox.html">How I built it</a></p>
                     </li>
                 </ol>
             </div>
@@ -99,17 +110,41 @@
             <h2 class="head experience__title" id="experience-title" data-reveal>Experience</h2>
             <div class="experience__stage" aria-hidden="true">
                 <div class="experience__frame">
-                    <!-- HRC² Lab: the Stretch -->
-                    <figure class="plate plate--photo is-active" data-for="0">
-                        <img src="img/stretch-can.jpg" width="1200" height="1600" loading="lazy"
-                            alt="The lab’s Hello Robot Stretch holding a can in its gripper beside a table marked with ArUco tags">
-                        <figcaption>The Stretch, mid pick-and-place</figcaption>
+                    <!-- HRC² Lab: what comes next -->
+                    <figure class="plate plate--type plate--dark is-active" data-for="0">
+                        <p class="plate__big">Next: π0.5</p>
+                        <p class="plate__small">Teaching the Stretch from my own demonstrations: datasets to
+                            fine-tune a vision-language-action model.</p>
                     </figure>
 
-                    <figure class="plate plate--photo" data-for="1">
-                        <img src="img/crc-team-2026.jpg" width="1800" height="1202" loading="lazy"
-                            alt="The Combat Robotics at Cornell team in their workshop, holding their robots">
-                        <figcaption>Combat Robotics at Cornell</figcaption>
+                    <!-- Combat Robotics: a driver’s pose becomes motor commands -->
+                    <figure class="plate plate--draw" data-for="1">
+                        <svg viewBox="0 0 400 500" role="img"
+                            aria-label="A stick-figure pose skeleton with arrows to throttle, steering and weapon">
+                            <g class="pose stroke-ink" fill="none" stroke-width="5" stroke-linecap="round">
+                                <path d="M130 120 L130 250" />
+                                <path d="M130 150 L80 200 L60 150" />
+                                <path d="M130 150 L185 185 L215 140" />
+                                <path d="M130 250 L100 340 L95 420" />
+                                <path d="M130 250 L160 340 L170 420" />
+                            </g>
+                            <circle class="stroke-ink" cx="130" cy="92" r="26" fill="none" stroke-width="5" />
+                            <g class="fill-accent">
+                                <circle cx="130" cy="150" r="8" /><circle cx="80" cy="200" r="8" />
+                                <circle cx="60" cy="150" r="8" /><circle cx="185" cy="185" r="8" />
+                                <circle cx="215" cy="140" r="8" /><circle cx="130" cy="250" r="8" />
+                                <circle cx="100" cy="340" r="8" /><circle cx="160" cy="340" r="8" />
+                            </g>
+                            <g class="stroke-accent" fill="none" stroke-width="3" stroke-dasharray="6 8">
+                                <path d="M225 140 L270 120" /><path d="M200 190 L270 230" /><path d="M175 340 L270 340" />
+                            </g>
+                            <g class="fill-ink" font-size="24">
+                                <text x="282" y="128">Weapon</text>
+                                <text x="282" y="238">Steering</text>
+                                <text x="282" y="348">Throttle</text>
+                            </g>
+                        </svg>
+                        <figcaption>My pipeline: a driver’s pose becomes motor commands</figcaption>
                     </figure>
 
                     <!-- Princeton: string modes -->
@@ -149,16 +184,12 @@
                             <div>
                                 <p><strong>Undergraduate researcher</strong> in the <a class="link" href="https://hrc2.io/people/">Human-Robot
                                         Collaboration &amp; Companionship Lab</a>, advised by Prof. Guy Hoffman. I built a
-                                    one-command ROS&nbsp;2 pipeline that has a Hello Robot Stretch navigate, grasp a can
-                                    and place it on another table: 20 runs end to end with no human input. Depth
-                                    perception finds the can to under 1&nbsp;cm. Now I’m building the datasets to
-                                    fine-tune a π0.5 VLA policy. <a class="link"
+                                    one-command ROS&nbsp;2 pipeline (ROS is the standard robot software framework) that
+                                    has a Hello Robot Stretch drive to a table, grasp a can and place it on another
+                                    table, with no human input. Now I’m building the datasets to fine-tune π0.5, a
+                                    vision-language-action model that turns camera images and instructions into robot
+                                    motion. <a class="link"
                                         href="https://github.com/gavinnlimm/stretch-picknplace">See the code on GitHub</a></p>
-                                <figure class="row__shot">
-                                    <img src="img/stretch-rviz.jpg" width="1600" height="1200" loading="lazy"
-                                        alt="RViz showing the Nav2 costmap and the Stretch localized on its map after reaching a goal">
-                                    <figcaption>Nav2 in RViz: the Stretch has reached its goal</figcaption>
-                                </figure>
                             </div>
                         </div>
                     </li>
@@ -173,7 +204,7 @@
                                 <p><strong>Mechanical subteam, CV teleoperation sub-lead and new-member trainer.</strong>
                                     I built the YOLOv11-Pose pipeline that turns a driver’s body into throttle, steering
                                     and weapon commands, with a failsafe that cuts every motor when tracking is lost. I
-                                    also engineered California Roll, a 1&nbsp;lb vertical drum spinner for NHRL. <a class="link"
+                                    also engineered our antweight, California Roll. <a class="link"
                                         href="#crc">See the robots</a></p>
                             </div>
                         </div>
@@ -209,19 +240,18 @@
             </figure>
             <div class="crc__text">
                 <h2 class="head" id="crc-title" data-reveal>Combat Robotics</h2>
-                <p data-reveal>I’m on the mechanical subteam at Combat Robotics at Cornell, lead the computer-vision
-                    teleoperation project and train new members. We design, machine and fight our own robots at NHRL.
-                </p>
+                <p data-reveal>We design, machine and fight our own robots at NHRL, the National Havoc Robot
+                    League.</p>
             </div>
             <figure class="crc__side" data-reveal>
                 <img src="img/crc-arena.jpg" width="1600" height="1200" loading="lazy"
                     alt="Team members driving robots in a clear-walled demo arena under a tent while students watch">
                 <figcaption>Driving demo bots for new members</figcaption>
             </figure>
-            <div class="crc__bot">
-                <img src="img/california-roll.png" width="1120" height="748" loading="lazy" data-reveal
+            <div class="crc__bot" data-reveal>
+                <img src="img/california-roll.png" width="1120" height="748" loading="lazy"
                     alt="CAD render of California Roll: a red vertical drum weapon, aluminum side plates and red treaded wheels">
-                <div class="crc__bottext" data-reveal>
+                <div class="crc__bottext">
                     <h3 class="crc__name">California Roll</h3>
                     <p>A 1&nbsp;lb vertical drum spinner I built for NHRL in spring 2026: a toothed high-energy drum,
                         2WD skid-steer drive and a chassis designed for manufacturing and assembly.</p>
@@ -230,58 +260,47 @@
             </div>
         </section>
 
-        <!-- Scene: GuitarBox opens (picture family) -->
-        <section class="scene open" id="guitarbox" data-scene="open" data-options='{"hold": 2}'
-            aria-labelledby="guitarbox-title">
-            <div class="scene-stage">
-                <figure class="open__win">
-                    <img src="img/tuning-box-front.jpg" width="1600" height="1200" loading="lazy"
-                        alt="GuitarBox: a press-fit cardboard box with an OLED screen and a row of six buttons">
-                </figure>
-                <h2 class="open__title" id="guitarbox-title">GuitarBox</h2>
-                <p class="open__cap">An Arduino guitar tuner I built at Harvard in 2024. Six buttons, one per string,
-                    82 to 330 Hz. I made ten of them for guitarists in Cambridge.</p>
-            </div>
-        </section>
-
-        <!-- The live thing -->
-        <section class="play" id="play" aria-labelledby="play-title">
+        <!-- GuitarBox: the device itself, playable -->
+        <section class="play" id="guitarbox" aria-labelledby="guitarbox-title">
             <div class="play__text">
-                <h2 class="head" id="play-title" data-reveal>Play GuitarBox</h2>
-                <p data-reveal>Six buttons, one per guitar string. Each plays the pitch my Arduino sent to its speaker
-                    in 2024, the same square wave, rounded to the same whole hertz. The screen says what its OLED said.
-                </p>
-                <p data-reveal>Hold a guitar up to your speakers and tune against it, or <a class="link"
-                        href="guitarbox.html">read how I built it</a>.</p>
+                <h2 class="play__title" id="guitarbox-title" data-reveal>GuitarBox</h2>
+                <p class="lead" data-reveal>An Arduino guitar tuner I built at Harvard in 2024. Each of its six buttons
+                    plays one string’s pitch, the same square wave my Arduino sent to its speaker, rounded to the same
+                    whole hertz.</p>
+                <p data-reveal>Press a string and hold a guitar up to your speakers to tune against it, or <a
+                        class="link" href="guitarbox.html">read how I built it</a>.</p>
                 <figure class="play__clip" data-reveal>
-                    <video data-loop muted loop playsinline preload="none" poster="img/guitarbox-demo-poster.jpg"
-                        width="1280" height="720" aria-label="My hand pressing the prototype’s buttons as the OLED shows each string">
-                        <source src="img/guitarbox-demo.mp4" type="video/mp4">
-                    </video>
+                    <div class="clip">
+                        <video data-loop muted loop playsinline preload="none" poster="img/guitarbox-demo-poster.jpg"
+                            width="1280" height="720" aria-label="My hand pressing the prototype’s buttons as the OLED shows each string">
+                            <source src="img/guitarbox-demo.mp4" type="video/mp4">
+                        </video>
+                        <button class="clip__toggle" type="button" aria-pressed="false">Pause</button>
+                    </div>
                     <figcaption>The 2024 prototype on a breadboard</figcaption>
                 </figure>
             </div>
 
-            <div class="box" data-ui data-reveal>
-                <div class="box__screen" aria-live="polite">
-                    <canvas class="box__wave" width="512" height="96" aria-hidden="true"></canvas>
-                    <p class="box__note">E2</p>
-                    <p class="box__string">String 1, 82 Hz</p>
+            <div class="box" id="play" data-reveal>
+                <div class="box__panel">
+                    <div class="box__oled">
+                        <div class="box__screen" aria-live="polite">
+                            <canvas class="box__wave" width="512" height="96" aria-hidden="true"></canvas>
+                            <p class="box__state">Not Pressed</p>
+                            <p class="box__note">No Tone</p>
+                            <p class="box__string">Press a string below</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="box__keys" role="group" aria-label="Guitar strings">
-                    <button class="key" data-hz="82" data-note="E2" data-string="1"><span>E2</span><small>82
-                            Hz</small></button>
-                    <button class="key" data-hz="110" data-note="A2" data-string="2"><span>A2</span><small>110
-                            Hz</small></button>
-                    <button class="key" data-hz="147" data-note="D3" data-string="3"><span>D3</span><small>147
-                            Hz</small></button>
-                    <button class="key" data-hz="196" data-note="G3" data-string="4"><span>G3</span><small>196
-                            Hz</small></button>
-                    <button class="key" data-hz="247" data-note="B3" data-string="5"><span>B3</span><small>247
-                            Hz</small></button>
-                    <button class="key" data-hz="330" data-note="E4" data-string="6"><span>E4</span><small>330
-                            Hz</small></button>
+                    <button class="key" type="button" aria-pressed="false" data-hz="82" data-note="E2" data-string="1"><span class="key__cap" aria-hidden="true"></span><span>E2</span><small>82 Hz</small></button>
+                    <button class="key" type="button" aria-pressed="false" data-hz="110" data-note="A2" data-string="2"><span class="key__cap" aria-hidden="true"></span><span>A2</span><small>110 Hz</small></button>
+                    <button class="key" type="button" aria-pressed="false" data-hz="147" data-note="D3" data-string="3"><span class="key__cap" aria-hidden="true"></span><span>D3</span><small>147 Hz</small></button>
+                    <button class="key" type="button" aria-pressed="false" data-hz="196" data-note="G3" data-string="4"><span class="key__cap" aria-hidden="true"></span><span>G3</span><small>196 Hz</small></button>
+                    <button class="key" type="button" aria-pressed="false" data-hz="247" data-note="B3" data-string="5"><span class="key__cap" aria-hidden="true"></span><span>B3</span><small>247 Hz</small></button>
+                    <button class="key" type="button" aria-pressed="false" data-hz="330" data-note="E4" data-string="6"><span class="key__cap" aria-hidden="true"></span><span>E4</span><small>330 Hz</small></button>
                 </div>
+                <p class="box__hint">No sound? Turn up your volume, and on a phone, check the silent switch.</p>
             </div>
         </section>
 
@@ -310,7 +329,6 @@
             <h2 class="visually-hidden" id="contact-title">Contact</h2>
             <p class="contact__line">Building something with robots, or just want to talk shop? I’d like
                 to hear from you.</p>
-            <img class="contact__face" src="img/gavin-portrait.jpg" width="1200" height="1600" loading="lazy" alt="">
             <div class="contact__links">
                 <p class="contact__ask">Best way to reach me</p>
                 <a class="link" href="mailto:gl568@cornell.edu?subject=Hello%20Gavin">gl568@cornell.edu</a>

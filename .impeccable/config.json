@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "guitarbox.html"
+        ],
+        "createdAt": "2026-10-30T17:47:30.877Z",
+        "reason": "Claude: static scan misreads clamp() padding from site.css; rendered scans at 1440 and 390 report no cramped padding"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-30T18:07:16.935Z",
+        "reason": "Claude: static scan can't resolve clamp()/var() padding in site.css; rendered scans at 1280 and 390 found no cramped padding"
+      }
+    ]
+  }
+}

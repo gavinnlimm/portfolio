@@ -4,480 +4,410 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>GuitarBox | Gavin Lim</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/guitarbox.css">
-    <script src="js/guitarbox.js"></script>
+    <title>GuitarBox build log | Gavin Lim</title>
+    <meta name="description"
+        content="How Gavin Lim built GuitarBox in 2024: an Arduino guitar tuner with six buttons, an OLED screen and a speaker, in a press-fit cardboard box.">
+    <meta name="theme-color" content="#0d0e10">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="fonts/work-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="css/site.css">
+    <link rel="stylesheet" href="css/guitarbox.css">
+    <script src="js/guitarbox.js" defer></script>
 </head>
 
 <body>
-    <div class="topnav" id="myTopnav">
-        <a href="index.html">Portfolio</a>
-        <a href="index.html#guitarbox">Play GuitarBox</a>
-    </div>
+    <a class="skip" href="#log">Skip to content</a>
 
-    <div class="center" id="aboutPage">
-        <h1>GuitarBox: an Arduino guitar tuner</h1>
-    </div>
+    <header class="hero">
+        <div class="hero__sheet">
+            <nav class="hero__nav" aria-label="Main">
+                <a class="wordmark" href="index.html" aria-label="Gavin Lim, home">Gavin Lim</a>
+                <div class="hero__links">
+                    <a class="link" href="index.html#experience">Experience</a>
+                    <a class="link" href="index.html#crc">Robots</a>
+                    <a class="link" href="index.html#play">Play GuitarBox</a>
+                    <a class="link" href="https://www.linkedin.com/in/gavinnlimm">LinkedIn</a>
+                </div>
+            </nav>
 
-    <div class="description">
-        <p class="subheading" id="center">
-            vision:
-        </p>
-        <p>One of my personal passions include playing musical instruments such as the guitar. I wanted to create a
-            simple device/mechanism that would support guitar players, so I found one specific problem that all players
-            struggle with: tuning.
-            Being a passioniate guitar player, I realize and understand the frustration that some guitar players
-            experience while trying to manually tune the six strings on a guitar.
-            Therefore, through this final project, I have decided to develop a device that not only simplifies, but
-            automates this entire process.
-        </p>
-    </div>
-
-    <hr>
-
-    <p class="heading" id="center">
-        <b>
-            Final Demo Video:
-        </b>
-    </p>
-
-    <div id="center">
-        <iframe width="1000" height="563" src="https://www.youtube.com/embed/nWNEN_aXbUo" frameborder="0"
-            allowfullscreen></iframe>
-    </div>
-
-    <hr>
-
-    <p class="heading" id="center" style="color: 007BFF;">
-        <b>
-            Initial Plan:
-        </b>
-    </p>
-
-    <p id="center" style="font-size: larger">
-        the automatic guitar tuner will consist of <b>two main components:</b>
-    </p>
-
-    <br>
-
-    <ol class="description">
-        <li><b>The Frequency Detector</b></li>
-        <ul>
-            <li>The frequency detector will be responsible for detecting the current frequency of a specific
-                string on the guitar. With the use of a microphone, and signal processing techniques, the frequency
-                detector will be able to
-                analyze the audio input from the guitar. Furthermore, by determining the frequency, it will provide
-                real-time
-                feedback on how to correctly tune the guitar strings.</li>
-        </ul>
-        <li><b>The Peg Adjustment System</b></li>
-        <ul>
-            <li>The motor-controlled peg adjustment system will be connected to the tuning pegs of the guitar. Based
-                on
-                the feedback received from the frequency detector, this system will automatically adjust the pegs to
-                achieve the correct frequency for each string. The motor will rotate the pegs in the required
-                direction
-                until the desired frequency is reached.</li>
-        </ul>
-    </ol>
-
-    <br>
-
-    <div class="image-container">
-        <img src="guitarbox/pic1.jpeg" alt="Clip-on tuners attached to a guitar headstock" loading="lazy">
-        <img src="guitarbox/pic2.jpeg" alt="Illustration of a hand turning a tuning peg on a guitar headstock" loading="lazy">
-    </div>
-
-    <br>
-
-    <div class="subsubheading" id="center">
-        <p>
-            <b>Input: </b>the frequencies of the guitar strings recorded with a microphone
-        </p>
-        <p>
-            <b>Output: </b> the adjustment of the pegs to change the tune of the guitar strings
-        </p>
-    </div>
-
-    <br>
-
-    <p class="heading" id="center" style="color: 007BFF;">
-        <b>
-            Updated Plan:
-        </b>
-    </p>
-
-    <div class="description">
-        <p style="text-align: center;">
-            After careful thought and consideration, I decided to simplify this entire process. The primary reason for
-            this was
-            because it was challenging to get a mechanism/device that could produce enough torque to turn the pegs on a
-            real guitar.
-        </p>
-        <br>
-        <p>
-            Therefore, in order to make the project more manageable, I decided to create a musicbox that emits the
-            precise frequency of
-            each individual guitar string. This device will allow a user to tune their guitar manually, aligning it
-            perfectly with the needed frequencies. By doing so, each string will be attuned to the exact pitch required
-            for optimal performance.
-        </p>
-
-        <br>
-
-        <hr>
-
-        <br>
-
-        <p class="heading" style="text-align: center;">
-            <b>
-                Fabrication Process
-            </b>
-        </p>
-
-        <p class="subheading">
-            Electronics Phase (Software and Circuitry):
-        </p>
-
-        <p>
-            To get a start in this project, I first designed a circuit using the Arduino Uno Microcontroller, that
-            represents a musicbox which can emulate the different frequencies of a guitar.
-            Within this system, the user is able to press 6 different buttons (which correlate to the 6 different
-            strings on a guitar), which each triggers a distinct sound frequency. These different sound frequencies,
-            which represent the 6 different guitar strings, are produced through a speaker which is also connected to
-            the Arduino Uno. Furthermore, this system also provides visual cues; each button corresponds to a unique
-            text displayed on the OLED screen, creating a more multifaceted user
-            experience.
-        </p>
-    </div>
-
-    <br>
-
-    <p id="center" style="font-size: larger;">
-        <b>Here are a few pictures of the inital setup: </b>
-    </p>
-
-    <div class="image-container">
-        <img src="guitarbox/fp1.jpg" alt="Initial setup: Arduino Uno wired to a breadboard with push buttons, an OLED screen and a speaker" loading="lazy">
-        <img src="guitarbox/fp2.jpg" alt="Initial setup seen from the side, with jumper wires running from the Arduino to the breadboard" loading="lazy">
-    </div>
-
-    <div class="image-container">
-        <img src="guitarbox/fp3.jpg" alt="Close-up of the Arduino Uno and its jumper wires in the initial setup" loading="lazy">
-        <img src="guitarbox/fp4.jpg" alt="Initial setup with the OLED screen lit up next to the breadboard" loading="lazy">
-    </div>
-
-    <br>
-
-    <div class="description">
-        <p>
-            <b>Here is a list of the equipment that I used:</b>
-        </p>
-
-        <ul>
-            <li>
-                Arduino Uno
-            </li>
-            <li>
-                Speaker
-            </li>
-            <li>
-                OLED Display
-            </li>
-            <li>
-                Breadboard
-            </li>
-            <li>
-                Buttons (x6)
-            </li>
-            <li>
-                Wires
-            </li>
-        </ul>
-
-        <br>
-
-        <p id="center" style="font-size: larger;">
-            <b>Here is the code that I created to use for this: </b>
-        </p>
-
-        <br>
-
-        <div class="code-section">
-            <button onclick="copyCode()" id="copyButton">Copy Code</button>
-            <pre id="codeBlock">
-                <code>
-                #include &lt;Wire.h&gt;
-                #include &lt;Adafruit_GFX.h&gt;
-                #include &lt;Adafruit_SSD1306.h&gt;
-                
-                #define SCREEN_WIDTH 128 // OLED display width, in pixels
-                #define SCREEN_HEIGHT 64 // OLED display height, in pixels
-                
-                // Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
-                #define OLED_RESET -1 // Reset pin # (or -1 if sharing Arduino reset pin)
-                Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &amp;Wire, OLED_RESET);
-                
-                const int buttonPins[] = {1, 2, 3, 4, 5, 6}; // Buttons connected to digital pins
-                const int speakerPin = 9; // Speaker connected to digital pin 9
-                
-                // Frequencies for E2, A2, D3, G3, B3, E4
-                const int toneFrequencies[] = {82, 110, 147, 196, 247, 330};
-                
-                String getNote(int index) {
-                    const String notes[] = {"E2", "A2", "D3", "G3", "B3", "E4"};
-                    if (index >= 0 &amp;&amp; index &lt; sizeof(buttonPins)/sizeof(int)) {
-                        return notes[index];
-                    }
-                    return "Unknown";
-                }
-                
-                String getString(int index) {
-                    if (index >= 0 &amp;&amp; index &lt; sizeof(buttonPins)/sizeof(int)) {
-                        return "String " + String(index + 1);
-                    }
-                    return "Unknown";
-                }
-                
-                void setup() {
-                    for (int i = 0; i &lt; sizeof(buttonPins)/sizeof(int); i++) {
-                        pinMode(buttonPins[i], INPUT_PULLUP); // Initialize the button pin as input with internal pull-up resistor
-                    }
-                    pinMode(speakerPin, OUTPUT); // Initialize the speaker pin as an output
-                
-                    // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
-                    if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3C for 128x64
-                        Serial.println(F("SSD1306 allocation failed"));
-                        for(;;); // Don't proceed, loop forever
-                    }
-                    display.clearDisplay();
-                    display.setTextSize(1); // Set text size
-                    display.setTextColor(SSD1306_WHITE);
-                }
-                
-                void loop() {
-                    display.clearDisplay();
-                    bool buttonPressed = false;
-                
-                    for (int i = 0; i &lt; sizeof(buttonPins)/sizeof(int); i++) {
-                        int buttonState = digitalRead(buttonPins[i]); // Read the state of the button
-                        if (buttonState == LOW) { // If the button is pressed (LOW because of pull-up resistor)
-                            tone(speakerPin, toneFrequencies[i]); // Play a tone on the speaker
-                            String note = getNote(i);
-                            String stringNum = getString(i);
-                            display.setCursor((SCREEN_WIDTH - (7 * 6))/2, 16); // 6 is approximate width of one character
-                            display.println("Pressed");
-                            display.setCursor((SCREEN_WIDTH - (note.length() + stringNum.length() + 2) * 6)/2, 32); // 6 is approximate width of one character
-                            display.print(note);
-                            display.print(", ");
-                            display.println(stringNum);
-                            buttonPressed = true;
-                            break; // only one button can be pressed at a time
-                        }
-                    }
-                
-                    if (!buttonPressed) {
-                        noTone(speakerPin); // If no button is pressed, stop playing the tone
-                        display.setCursor((SCREEN_WIDTH - (11 * 6))/2, 16); // 6 is approximate width of one character
-                        display.println("Not Pressed");
-                        display.setCursor((SCREEN_WIDTH - (7 * 6))/2, 32); // 6 is approximate width of one character
-                        display.println("No Tone");
-                    }
-                
-                    display.display();
-                }
-                </code>
-            </pre>
+            <div class="hero__body">
+                <h1 class="display">GuitarBox</h1>
+                <p class="lead">An Arduino guitar tuner I built at Harvard in 2024. Six buttons, one per string, 82 to
+                    330&nbsp;Hz. I made ten of them for guitarists in Cambridge.</p>
+                <div class="hero__actions">
+                    <a class="button" href="index.html#play">Play it in your browser</a>
+                    <a class="link" href="#demo">Watch the demo</a>
+                </div>
+                <p class="hero__now">Arduino Uno, an OLED screen, a speaker and six buttons, in a press-fit cardboard
+                    box.</p>
+            </div>
         </div>
 
-        <br><br>
+        <figure class="hero__picture">
+            <img src="img/tuning-box-front.jpg" width="1600" height="1200" fetchpriority="high"
+                alt="GuitarBox: a press-fit cardboard box with an OLED screen and a row of six buttons">
+            <figcaption class="hero__bar">
+                <span>The finished GuitarBox</span>
+                <span>Harvard, 2024</span>
+            </figcaption>
+        </figure>
+    </header>
 
-        <p id="center" style="font-size: larger;">
-            <b>Here are some videos of the inital setup working: </b>
-        </p>
+    <main class="log" id="log">
+        <nav class="toc" aria-label="On this page">
+            <p class="toc__title">Build log</p>
+            <ol class="toc__list">
+                <li><a href="#vision">Vision</a></li>
+                <li><a href="#demo">Final demo</a></li>
+                <li><a href="#plan">Initial plan</a></li>
+                <li><a href="#update">Updated plan</a></li>
+                <li><a href="#electronics">Electronics</a></li>
+                <li><a href="#assembly">Assembly</a></li>
+                <li><a href="#printing">3D printing</a></li>
+                <li><a href="#final">Final product</a></li>
+            </ol>
+        </nav>
 
-        <div id="center">
-            <iframe width="1000" height="563" src="https://www.youtube.com/embed/-E1iQK5CEFE" frameborder="0"
-                allowfullscreen></iframe>
-        </div>
+        <div class="log__body">
+            <section class="sec" id="vision" aria-labelledby="vision-title">
+                <h2 class="head" id="vision-title">Vision</h2>
+                <p>One of my personal passions is playing musical instruments such as the guitar. I wanted to create a
+                    simple device that would support guitar players, so I found one specific problem that all players
+                    struggle with: tuning. Being a passionate guitar player, I understand the frustration that some
+                    guitar players experience while trying to manually tune the six strings on a guitar. Therefore,
+                    through this final project, I decided to develop a device that not only simplifies, but automates
+                    this entire process.</p>
+            </section>
 
-        <br>
-        <hr>
-        <br>
+            <section class="sec" id="demo" aria-labelledby="demo-title">
+                <h2 class="head" id="demo-title">Final demo</h2>
+                <div class="video">
+                    <iframe src="https://www.youtube.com/embed/nWNEN_aXbUo" title="GuitarBox final demo video"
+                        loading="lazy" allowfullscreen></iframe>
+                </div>
+            </section>
 
-        <p>
-            Once I established the foundational circuit which incorporated all of the essential components, I
-            decided to
-            recreate the circuitry but with a neater and more efficient layout. I did this by incorporating an
-            additional breadboard into the system, which provided extra space for better wiring.
-        </p>
+            <section class="sec" id="plan" aria-labelledby="plan-title">
+                <h2 class="head" id="plan-title">Initial plan</h2>
+                <p class="lead">The automatic guitar tuner would consist of two main components.</p>
 
-        <br>
+                <ol class="parts">
+                    <li>
+                        <span class="parts__count">1 of 2</span>
+                        <h3>The frequency detector</h3>
+                        <p>The frequency detector would be responsible for detecting the current frequency of a
+                            specific string on the guitar. With a microphone and signal processing techniques, it would
+                            analyze the audio input from the guitar. By determining the frequency, it would give
+                            real-time feedback on how to correctly tune the guitar strings.</p>
+                    </li>
+                    <li>
+                        <span class="parts__count">2 of 2</span>
+                        <h3>The peg adjustment system</h3>
+                        <p>The motor-controlled peg adjustment system would be connected to the tuning pegs of the
+                            guitar. Based on the feedback from the frequency detector, it would automatically adjust
+                            the pegs to reach the correct frequency for each string, rotating each peg in the required
+                            direction until the desired frequency is reached.</p>
+                    </li>
+                </ol>
 
-        <div class="image-container">
-            <img src="guitarbox/fp6.JPG" alt="Rebuilt circuit spread across two breadboards, with the OLED screen in front" loading="lazy">
-            <img src="guitarbox/fp7.JPG" alt="Close-up of the push buttons on the second breadboard" loading="lazy">
-        </div>
+                <figure class="shot">
+                    <div class="shot__row">
+                        <img src="guitarbox/pic1.jpeg" width="1024" height="504" style="--ar: 2.03" loading="lazy"
+                            alt="Clip-on tuners attached to a guitar headstock">
+                        <img src="guitarbox/pic2.jpeg" width="460" height="345" style="--ar: 1.33" loading="lazy"
+                            alt="Illustration of a hand turning a tuning peg on a guitar headstock">
+                    </div>
+                    <figcaption>Tuning by hand: clip-on tuners, and turning the pegs</figcaption>
+                </figure>
 
-        <br>
+                <dl class="io">
+                    <div>
+                        <dt>Input</dt>
+                        <dd>The frequencies of the guitar strings, recorded with a microphone</dd>
+                    </div>
+                    <div>
+                        <dt>Output</dt>
+                        <dd>Turning the pegs to change the tune of the guitar strings</dd>
+                    </div>
+                </dl>
+            </section>
 
-        <p>
-            Additionally, after creating a base circuit, I tried to experiment with other input/output devices that
-            could potentially make my final product better. For instance, I tried to experiment with a bigger
-            display
-            (LCD), rather than the OLED.
-            Furthermore, I also tried to implement the use of a microphone to potentially create the initial guitar
-            tuner
-            that I intended to make.
-        </p>
+            <section class="sec" id="update" aria-labelledby="update-title">
+                <h2 class="head" id="update-title">Updated plan</h2>
+                <p class="lead">After careful thought, I decided to simplify the whole process. It was too hard to
+                    find a mechanism that could produce enough torque to turn the pegs on a real guitar.</p>
+                <p>To make the project more manageable, I decided to create a music box that plays the precise
+                    frequency of each guitar string. It lets a player tune their guitar by hand, matching each string
+                    to the exact pitch it needs.</p>
+            </section>
 
-        <br>
-    </div>
+            <section class="sec" id="electronics" aria-labelledby="electronics-title">
+                <h2 class="head" id="electronics-title">Electronics: software and circuitry</h2>
+                <p>To start, I designed a circuit around the Arduino Uno that works as a music box for the six
+                    frequencies of a guitar. The user presses one of six buttons, one per string, and each triggers its
+                    own frequency through a speaker connected to the Arduino. Each button also shows its own text on
+                    the OLED screen, so the device gives visual cues as well as sound.</p>
 
-    <div class="imageShadow" id="center">
-        <img src="guitarbox/fp8.jpg" alt="Experiment with a larger LCD display and a microphone on a SparkFun board next to the original circuit" loading="lazy" width="40%">
-    </div>
+                <figure class="shot">
+                    <div class="shot__row">
+                        <img src="guitarbox/fp1.jpg" width="1270" height="1008" style="--ar: 1.26" loading="lazy"
+                            alt="Initial setup: Arduino Uno wired to a breadboard with push buttons, an OLED screen and a speaker">
+                        <img src="guitarbox/fp2.jpg" width="1346" height="1016" style="--ar: 1.32" loading="lazy"
+                            alt="Initial setup seen from the side, with jumper wires running from the Arduino to the breadboard">
+                    </div>
+                    <div class="shot__row">
+                        <img src="guitarbox/fp3.jpg" width="1600" height="1118" style="--ar: 1.43" loading="lazy"
+                            alt="Close-up of the Arduino Uno and its jumper wires in the initial setup">
+                        <img src="guitarbox/fp4.jpg" width="1418" height="1018" style="--ar: 1.39" loading="lazy"
+                            alt="Initial setup with the OLED screen lit up next to the breadboard">
+                    </div>
+                    <figcaption>The initial setup</figcaption>
+                </figure>
 
-    <br>
+                <h3 class="sub">Equipment</h3>
+                <ul class="kit">
+                    <li>Arduino Uno</li>
+                    <li>Speaker</li>
+                    <li>OLED display</li>
+                    <li>Breadboard</li>
+                    <li>Buttons (×6)</li>
+                    <li>Wires</li>
+                </ul>
 
-    <div class="description">
-        <p>
-            However, through this experimentation, I realized that it was a struggle to get these components to work.
-            For example, I was having troubles with receiving a frequnecy from the microphone. In addition, I figured
-            that using the OLED screen was a better option that the LCD Display. Although the LCD
-            provided a larger screen, I found that the OLED screen was more aesthetically pleasing to the eye; which is
-            why
-            I decided to keep it in my final project.
-        </p>
-        <br>
-        <hr>
-        <br>
+                <details class="fold">
+                    <summary>
+                        <span>The first version of the code</span>
+                        <span class="fold__icon" aria-hidden="true"></span>
+                    </summary>
+                    <div class="code">
+                        <div class="code__bar">
+                            <span>guitarbox_v1.ino</span>
+                            <button class="code__copy" type="button" data-copy="code-v1">Copy code</button>
+                        </div>
+                        <pre tabindex="0" aria-label="First version of the GuitarBox code"><code id="code-v1">#include &lt;Wire.h&gt;
+#include &lt;Adafruit_GFX.h&gt;
+#include &lt;Adafruit_SSD1306.h&gt;
 
-        <p>
-            After remaking the circuit, I made the decision to remove the additional breadboard, to keep the sort-of
-            compact design for the system.
+#define SCREEN_WIDTH 128 // OLED display width, in pixels
+#define SCREEN_HEIGHT 64 // OLED display height, in pixels
 
-            I then remade the circuit and made it even more neater, using wires that stick directly to the breadboard
-            without causing any additional blockage. Furthermore, I attached the OLED display using wires instead of
-            just sticking it directly into the breadboard.
-        </p>
+// Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
+#define OLED_RESET -1 // Reset pin # (or -1 if sharing Arduino reset pin)
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &amp;Wire, OLED_RESET);
 
-        <br>
+const int buttonPins[] = {1, 2, 3, 4, 5, 6}; // Buttons connected to digital pins
+const int speakerPin = 9; // Speaker connected to digital pin 9
 
-        <div class="image-container">
-            <img src="guitarbox/fp9.JPG" alt="Hand holding the OLED screen, now connected by wires, above the tidied breadboard" loading="lazy">
-            <img src="guitarbox/fp10.JPG" alt="Tidied circuit with flat wires running to the row of push buttons" loading="lazy">
-        </div>
+// Frequencies for E2, A2, D3, G3, B3, E4
+const int toneFrequencies[] = {82, 110, 147, 196, 247, 330};
 
-        <br>
+String getNote(int index) {
+    const String notes[] = {"E2", "A2", "D3", "G3", "B3", "E4"};
+    if (index &gt;= 0 &amp;&amp; index &lt; sizeof(buttonPins)/sizeof(int)) {
+        return notes[index];
+    }
+    return "Unknown";
+}
 
-        <br>
+String getString(int index) {
+    if (index &gt;= 0 &amp;&amp; index &lt; sizeof(buttonPins)/sizeof(int)) {
+        return "String " + String(index + 1);
+    }
+    return "Unknown";
+}
 
-        <div class="image-container">
-            <img src="guitarbox/fp11.JPG" alt="Hand holding the small amplifier module" loading="lazy">
-        </div>
+void setup() {
+    for (int i = 0; i &lt; sizeof(buttonPins)/sizeof(int); i++) {
+        pinMode(buttonPins[i], INPUT_PULLUP); // Initialize the button pin as input with internal pull-up resistor
+    }
+    pinMode(speakerPin, OUTPUT); // Initialize the speaker pin as an output
 
-        <br>
+    // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
+    if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3C for 128x64
+        Serial.println(F("SSD1306 allocation failed"));
+        for(;;); // Don't proceed, loop forever
+    }
+    display.clearDisplay();
+    display.setTextSize(1); // Set text size
+    display.setTextColor(SSD1306_WHITE);
+}
 
-        <p>
-            I then attempted to attach an amplifier to the system, in order to make the sound of the speaker a little
-            louder.
-            However, I found this step unsuccessful, as I found troubles with using the amplifier to alter the volume of
-            the speaker.
-        </p>
+void loop() {
+    display.clearDisplay();
+    bool buttonPressed = false;
 
-        <br>
+    for (int i = 0; i &lt; sizeof(buttonPins)/sizeof(int); i++) {
+        int buttonState = digitalRead(buttonPins[i]); // Read the state of the button
+        if (buttonState == LOW) { // If the button is pressed (LOW because of pull-up resistor)
+            tone(speakerPin, toneFrequencies[i]); // Play a tone on the speaker
+            String note = getNote(i);
+            String stringNum = getString(i);
+            display.setCursor((SCREEN_WIDTH - (7 * 6))/2, 16); // 6 is approximate width of one character
+            display.println("Pressed");
+            display.setCursor((SCREEN_WIDTH - (note.length() + stringNum.length() + 2) * 6)/2, 32); // 6 is approximate width of one character
+            display.print(note);
+            display.print(", ");
+            display.println(stringNum);
+            buttonPressed = true;
+            break; // only one button can be pressed at a time
+        }
+    }
 
-        <p>
-            After unsuccessfully trying to implement the use of an amplifier within my system, I eventually thought
-            about making this device portable, and easy to carry around. Thus, I experimented with both the use of
-            Double AA Batteries and a Powerbank to powerup the Arduino Uno Microcontroller.
-        </p>
+    if (!buttonPressed) {
+        noTone(speakerPin); // If no button is pressed, stop playing the tone
+        display.setCursor((SCREEN_WIDTH - (11 * 6))/2, 16); // 6 is approximate width of one character
+        display.println("Not Pressed");
+        display.setCursor((SCREEN_WIDTH - (7 * 6))/2, 32); // 6 is approximate width of one character
+        display.println("No Tone");
+    }
 
-        <br>
+    display.display();
+}</code></pre>
+                    </div>
+                </details>
 
-        <div class="image-container">
-            <img src="guitarbox/fp12.JPG" alt="Circuit powered by a pack of AA batteries" loading="lazy">
-            <img src="guitarbox/fp13.JPG" alt="Circuit powered by a power bank" loading="lazy">
-        </div>
+                <h3 class="sub">The initial setup working</h3>
+                <div class="video">
+                    <iframe src="https://www.youtube.com/embed/-E1iQK5CEFE" title="The initial GuitarBox setup working"
+                        loading="lazy" allowfullscreen></iframe>
+                </div>
 
-        <br><br>
+                <h3 class="sub">A neater layout</h3>
+                <p>Once the foundational circuit had all of the essential components, I rebuilt it with a neater, more
+                    efficient layout. An additional breadboard gave me extra space for better wiring.</p>
 
-        <p id="center" style="font-size: larger;">
-            <b>Here is my final completed code that I used for this project: </b>
-        </p>
+                <figure class="shot">
+                    <div class="shot__row">
+                        <img src="guitarbox/fp6.JPG" width="1200" height="1600" style="--ar: 0.75" loading="lazy"
+                            alt="Rebuilt circuit spread across two breadboards, with the OLED screen in front">
+                        <img src="guitarbox/fp7.JPG" width="1200" height="1600" style="--ar: 0.75" loading="lazy"
+                            alt="Close-up of the push buttons on the second breadboard">
+                    </div>
+                    <figcaption>The circuit across two breadboards</figcaption>
+                </figure>
 
-        <div class="code-section">
-            <button onclick="copyCode()" id="copyButton">Copy Code</button>
-            <pre id="codeBlock">
-                <code>
-                #include <Wire.h>
-                #include <Adafruit_GFX.h>
-                #include <Adafruit_SSD1306.h>
-                
-                #define SCREEN_WIDTH 128 // OLED display width, in pixels
-                #define SCREEN_HEIGHT 64 // OLED display height, in pixels
-                                        
-                // Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
-                #define OLED_RESET -1 // Reset pin # (or -1 if sharing Arduino reset pin)
-                Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
-                        
-                const int buttonPins[] = {1, 2, 3, 4, 5, 6}; // Buttons connected to digital pins
-                const int speakerPin = 13; // Speaker connected to digital pin 9
-                        
-                        
-                // Frequencies for E2, A2, D3, G3, B3, E4
-                const int toneFrequencies[] = {82, 110, 147, 196, 247, 330};
-                        
-                        
-                String getNote(int index) {
-                const String notes[] = {"E2", "A2", "D3", "G3", "B3", "E4"};
-                if (index >= 0 && index < sizeof(buttonPins)/sizeof(int)) {
-                return notes[index];
-                }
-                return "Unknown";
-                }
-                        
-                        
-                String getString(int index) {
-                if (index >= 0 && index < sizeof(buttonPins)/sizeof(int)) {
-                return "String " + String(index + 1);
-                }                     
-                return "Unknown";
-                }
-                        
-                        
-                void setup() {
-                for (int i = 0; i < sizeof(buttonPins)/sizeof(int); i++) {
-                pinMode(buttonPins[i], INPUT_PULLUP); // Initialize the button pin as input with internal pull-up resistor
-                }
-                pinMode(speakerPin, OUTPUT); // Initialize the speaker pin as an output
-                        
-                        
-                // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
-                if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3C for 128x64
-                Serial.println(F("SSD1306 allocation failed"));
-                for(;;); // Don't proceed, loop forever
-                }
-                display.clearDisplay();
-                display.setTextSize(1); // Set text size
-                display.setTextColor(SSD1306_WHITE);
-                }
-                        
-                        
-                void loop() {
-                display.clearDisplay();
-                bool buttonPressed = false;
-                        
-                        
-                for (int i = 0; i < sizeof(buttonPins)/sizeof(int); i++) {
-                int buttonState = digitalRead(buttonPins[i]); // Read the state of the button
-                if (buttonState == LOW) { // If the button is pressed (LOW because of pull-up resistor)
-                tone(speakerPin, toneFrequencies[i]); // Play a tone on the speaker
-                String note = getNote(i);
-                String stringNum = getString(i);
-                for (int j = 0; j < 10; j++) {
+                <h3 class="sub">Trying an LCD and a microphone</h3>
+                <p>With a base circuit working, I experimented with other input and output devices that could make the
+                    final product better. I tried a bigger LCD display in place of the OLED, and a microphone, to work
+                    toward the automatic tuner I had first planned.</p>
+
+                <figure class="shot">
+                    <img src="guitarbox/fp8.jpg" width="1600" height="1214" loading="lazy"
+                        alt="Experiment with a larger LCD display and a microphone on a SparkFun board next to the original circuit">
+                    <figcaption>The LCD and microphone experiment, beside the original circuit</figcaption>
+                </figure>
+
+                <p>Getting these components to work was a struggle. I had trouble getting a frequency reading from the
+                    microphone. I also found the OLED screen a better choice than the LCD: the LCD was bigger, but the
+                    OLED was more pleasing to the eye, so I kept it for the final project.</p>
+
+                <h3 class="sub">A compact rebuild</h3>
+                <p>Next I removed the extra breadboard to keep the system compact. I rebuilt the circuit even more
+                    neatly, with wires that sit flat on the breadboard without blocking anything, and connected the OLED
+                    display by wires instead of plugging it straight into the breadboard.</p>
+
+                <figure class="shot">
+                    <div class="shot__row">
+                        <img src="guitarbox/fp9.JPG" width="1200" height="1600" style="--ar: 0.75" loading="lazy"
+                            alt="Hand holding the OLED screen, now connected by wires, above the tidied breadboard">
+                        <img src="guitarbox/fp10.JPG" width="1200" height="1600" style="--ar: 0.75" loading="lazy"
+                            alt="Tidied circuit with flat wires running to the row of push buttons">
+                    </div>
+                    <figcaption>The compact rebuild, with the OLED on wires</figcaption>
+                </figure>
+
+                <div class="aside">
+                    <figure class="shot aside__pic">
+                        <img src="guitarbox/fp11.JPG" width="1200" height="1600" loading="lazy"
+                            alt="Hand holding the small amplifier module">
+                        <figcaption>The amplifier module</figcaption>
+                    </figure>
+                    <div class="aside__text">
+                        <h3 class="sub">An amplifier, and power</h3>
+                        <p>I tried attaching an amplifier to make the speaker a little louder. That step didn’t work: I
+                            couldn’t get the amplifier to change the speaker’s volume.</p>
+                        <p>After that, I wanted the device to be portable and easy to carry around, so I tried powering
+                            the Arduino Uno with both AA batteries and a power bank.</p>
+                    </div>
+                </div>
+
+                <figure class="shot">
+                    <div class="shot__row">
+                        <img src="guitarbox/fp12.JPG" width="1200" height="1600" style="--ar: 0.75" loading="lazy"
+                            alt="Circuit powered by a pack of AA batteries">
+                        <img src="guitarbox/fp13.JPG" width="1600" height="1200" style="--ar: 1.33" loading="lazy"
+                            alt="Circuit powered by a power bank">
+                    </div>
+                    <figcaption>Battery power, then a power bank</figcaption>
+                </figure>
+
+                <h3 class="sub">Final code</h3>
+                <p>This is the final code I used for the project. Each press now holds its message on the screen for a
+                    moment while the tone plays.</p>
+                <div class="code">
+                    <div class="code__bar">
+                        <span>guitarbox.ino</span>
+                        <button class="code__copy" type="button" data-copy="code-final">Copy code</button>
+                    </div>
+                    <pre tabindex="0" aria-label="Final GuitarBox code"><code id="code-final">#include &lt;Wire.h&gt;
+#include &lt;Adafruit_GFX.h&gt;
+#include &lt;Adafruit_SSD1306.h&gt;
+
+#define SCREEN_WIDTH 128 // OLED display width, in pixels
+#define SCREEN_HEIGHT 64 // OLED display height, in pixels
+
+// Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
+#define OLED_RESET -1 // Reset pin # (or -1 if sharing Arduino reset pin)
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &amp;Wire, OLED_RESET);
+
+const int buttonPins[] = {1, 2, 3, 4, 5, 6}; // Buttons connected to digital pins
+const int speakerPin = 13; // Speaker connected to digital pin 9
+
+// Frequencies for E2, A2, D3, G3, B3, E4
+const int toneFrequencies[] = {82, 110, 147, 196, 247, 330};
+
+String getNote(int index) {
+    const String notes[] = {"E2", "A2", "D3", "G3", "B3", "E4"};
+    if (index &gt;= 0 &amp;&amp; index &lt; sizeof(buttonPins)/sizeof(int)) {
+        return notes[index];
+    }
+    return "Unknown";
+}
+
+String getString(int index) {
+    if (index &gt;= 0 &amp;&amp; index &lt; sizeof(buttonPins)/sizeof(int)) {
+        return "String " + String(index + 1);
+    }
+    return "Unknown";
+}
+
+void setup() {
+    for (int i = 0; i &lt; sizeof(buttonPins)/sizeof(int); i++) {
+        pinMode(buttonPins[i], INPUT_PULLUP); // Initialize the button pin as input with internal pull-up resistor
+    }
+    pinMode(speakerPin, OUTPUT); // Initialize the speaker pin as an output
+
+    // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
+    if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3C for 128x64
+        Serial.println(F("SSD1306 allocation failed"));
+        for(;;); // Don't proceed, loop forever
+    }
+    display.clearDisplay();
+    display.setTextSize(1); // Set text size
+    display.setTextColor(SSD1306_WHITE);
+}
+
+void loop() {
+    display.clearDisplay();
+    bool buttonPressed = false;
+
+    for (int i = 0; i &lt; sizeof(buttonPins)/sizeof(int); i++) {
+        int buttonState = digitalRead(buttonPins[i]); // Read the state of the button
+        if (buttonState == LOW) { // If the button is pressed (LOW because of pull-up resistor)
+            tone(speakerPin, toneFrequencies[i]); // Play a tone on the speaker
+            String note = getNote(i);
+            String stringNum = getString(i);
+            for (int j = 0; j &lt; 10; j++) {
                 display.clearDisplay();
                 display.setCursor((SCREEN_WIDTH - (7 * 6))/2, 16); // 6 is approximate width of one character
                 display.println("Pressed");
@@ -487,147 +417,123 @@
                 display.println(stringNum);
                 display.display();
                 delay(100); // You might need to adjust this delay
-                }
-                        
-                        
-                buttonPressed = true;
-                break; // only one button can be pressed at a time
-                }
-                }
-                        
-                        
-                if (!buttonPressed) {
-                noTone(speakerPin); // If no button is pressed, stop playing the tone
-                display.setCursor((SCREEN_WIDTH - (11 * 6))/2, 16); // 6 is approximate width of one character
-                display.println("Not Pressed");
-                display.setCursor((SCREEN_WIDTH - (7 * 6))/2, 32); // 6 is approximate width of one character
-                display.println("No Tone");
-                }
-                        
-                        
-                display.display();
-                }
-                    </code>
-            </pre>
+            }
+
+            buttonPressed = true;
+            break; // only one button can be pressed at a time
+        }
+    }
+
+    if (!buttonPressed) {
+        noTone(speakerPin); // If no button is pressed, stop playing the tone
+        display.setCursor((SCREEN_WIDTH - (11 * 6))/2, 16); // 6 is approximate width of one character
+        display.println("Not Pressed");
+        display.setCursor((SCREEN_WIDTH - (7 * 6))/2, 32); // 6 is approximate width of one character
+        display.println("No Tone");
+    }
+
+    display.display();
+}</code></pre>
+                </div>
+            </section>
+
+            <section class="sec" id="assembly" aria-labelledby="assembly-title">
+                <h2 class="head" id="assembly-title">Assembly: CAD and PrusaSlicer</h2>
+                <p>With the circuitry and software done, I needed something that held all of the electronics and wires
+                    in one place while still letting the user interact with the device. I planned a box: using Fusion
+                    360, I designed a press-fit box and cut it from cardboard.</p>
+
+                <figure class="shot">
+                    <img src="guitarbox/fp15.JPG" width="1600" height="1200" loading="lazy"
+                        alt="Cardboard press-fit box under construction, with the circuit and speaker beside it">
+                    <figcaption>The press-fit box going together</figcaption>
+                </figure>
+
+                <p>I also screwed the OLED screen into the front panel of the box.</p>
+
+                <figure class="shot">
+                    <div class="shot__row">
+                        <img src="guitarbox/fp16.JPG" width="1200" height="1600" style="--ar: 0.75" loading="lazy"
+                            alt="OLED screen screwed into the front panel of the cardboard box">
+                        <img src="guitarbox/fp17.JPG" width="1200" height="1600" style="--ar: 0.75" loading="lazy"
+                            alt="Hand holding the front panel with the OLED screen mounted">
+                    </div>
+                    <figcaption>The OLED screen mounted in the front panel</figcaption>
+                </figure>
+
+                <p class="get">
+                    <a class="button" href="guitarbox/PressFit%20Final%20Project.dxf" download>Download the press-fit
+                        box</a>
+                    <span>DXF, 106&nbsp;KB</span>
+                </p>
+            </section>
+
+            <section class="sec" id="printing" aria-labelledby="printing-title">
+                <h2 class="head" id="printing-title">3D printing</h2>
+                <p>I wanted to use the 3D printer to solve a problem with the system. One limitation was that I
+                    couldn’t use the amplifier to control the speaker’s volume. So I designed a 3D-printed sound
+                    amplifier that takes in the sound from the speaker and makes it louder to the human ear.</p>
+
+                <figure class="shot">
+                    <img src="guitarbox/fp18.png" width="1600" height="828" loading="lazy"
+                        alt="PrusaSlicer preview of the 3D-printed sound amplifier">
+                    <div class="shot__row">
+                        <img src="guitarbox/fp19.png" width="746" height="884" style="--ar: 0.84" loading="lazy"
+                            alt="PrusaSlicer legend with the estimated print time and filament use">
+                        <img src="guitarbox/fp20.png" width="850" height="826" style="--ar: 1.03" loading="lazy"
+                            alt="PrusaSlicer print, filament and scale settings for the sound amplifier">
+                    </div>
+                    <figcaption>The sound amplifier in PrusaSlicer, with its print time and settings</figcaption>
+                </figure>
+
+                <p class="get">
+                    <a class="button" href="guitarbox/soundamplifier.stl" download>Download the sound amplifier</a>
+                    <span>STL, 2.7&nbsp;MB</span>
+                </p>
+            </section>
         </div>
-        <br>
-        <hr><br>
+    </main>
 
-        <p class="subheading">
-            Assembly Phase (CAD Software and PrusaSlicer):
-        </p>
-        <p>
-            After successfully completing the circuitry/software part of the project, I needed to create a contraption
-            that essentially stored all of the microcontrollers and wires in one place, while also letting the user
-            interact with the device. I planned to create a box; using my knowledge within Fusion360, I created a
-            press-fit constructed box, and used cardboard as my medium.
-        </p>
+    <section class="final" id="final" aria-labelledby="final-title">
+        <h2 class="head" id="final-title">Final product</h2>
 
-        <br>
+        <div class="final__grid">
+            <figure class="shot">
+                <div class="shot__row">
+                    <img src="guitarbox/fp21.JPG" width="1600" height="1200" style="--ar: 1.33" loading="lazy"
+                        alt="Finished GuitarBox: cardboard box with the OLED screen on the front and buttons along the base">
+                    <img src="guitarbox/fp22.JPG" width="1600" height="1200" style="--ar: 1.33" loading="lazy"
+                        alt="Front view of the finished GuitarBox with the screen on">
+                </div>
+                <div class="shot__row">
+                    <img src="guitarbox/fp23.JPG" width="1600" height="1200" style="--ar: 1.33" loading="lazy"
+                        alt="Close front view of the finished GuitarBox showing the OLED message">
+                    <img src="guitarbox/fp24.JPG" width="1600" height="1200" style="--ar: 1.33" loading="lazy"
+                        alt="Finished GuitarBox from an angle, with the speaker opening on top and a power bank beside it">
+                </div>
+                <div class="shot__row">
+                    <img src="guitarbox/fp25.JPG" width="1200" height="1600" style="--ar: 0.75" loading="lazy"
+                        alt="Finished GuitarBox with the lid open to show the speaker mounted underneath">
+                    <img src="guitarbox/fp26.JPG" width="1200" height="1600" style="--ar: 0.75" loading="lazy"
+                        alt="Top-down view inside the box: Arduino, breadboard and wiring">
+                </div>
+            </figure>
 
-        <div id="center" class="imageShadow">
-            <img src="guitarbox/fp15.JPG" alt="Cardboard press-fit box under construction, with the circuit and speaker beside it" loading="lazy" width="65%">
+            <div class="final__close">
+                <p class="lead">Six buttons, one per string. You can still press them: the home page plays the same
+                    pitches my Arduino sent to its speaker.</p>
+                <div class="final__actions">
+                    <a class="button" href="index.html#play">Play GuitarBox</a>
+                    <a class="link" href="index.html">Back to the portfolio</a>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <br>
-
-        <p id="center" style="font-size: larger;">
-            <b>
-                I also screwed in the OLED Screen into the front of the cardboard press-fit.
-            </b>
-        </p>
-
-        <div class="image-container">
-            <img src="guitarbox/fp16.JPG" alt="OLED screen screwed into the front panel of the cardboard box" loading="lazy">
-            <img src="guitarbox/fp17.JPG" alt="Hand holding the front panel with the OLED screen mounted" loading="lazy">
-        </div>
-
-        <br>
-
-        <!-- Modified from W3Schools -->
-
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-        <div id="center">
-            <a href="guitarbox/PressFit Final Project.dxf" download>
-                <button class="btn"><i class="fa fa-download"></i> Press-Fit Construction Download </button>
-            </a>
-        </div>
-
-        <br>
-
-        <!-- End of citation -->
-
-        <p class="subsubheading">
-            3D Printing:
-        </p>
-
-        <p>
-            I thought of trying to implement the 3D printer
-            with a problem that I was experiencing with the system. And I found that one problem, or better to say, one
-            limitation of my project, was not being able to fully use the amplifer to control the volume of the speaker.
-            Therefore, I tried to create a sort of 3D-printed sound amplifier, which would take in the sound produced by
-            the speaker, and make it louder to the human ear.
-        </p>
-
-        <br>
-
-        <p id="center" style="font-size: larger;">
-            <b>
-                Here are some pictures:
-            </b>
-        </p>
-    </div>
-
-    <div id="center" class="imageShadow">
-        <img src="guitarbox/fp18.png" alt="PrusaSlicer preview of the 3D-printed sound amplifier" loading="lazy" width="75%">
-    </div>
-
-    <div class="image-container">
-        <img src="guitarbox/fp19.png" alt="PrusaSlicer legend with the estimated print time and filament use" loading="lazy">
-        <img src="guitarbox/fp20.png" alt="PrusaSlicer print, filament and scale settings for the sound amplifier" loading="lazy">
-    </div>
-
-    <br>
-
-    <!-- Modified from W3Schools -->
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <div id="center">
-        <a href="guitarbox/soundamplifier.stl" download>
-            <button class="btn"><i class="fa fa-download"></i> Sound Amplifer Download </button>
-        </a>
-    </div>
-
-    <!-- End of citation -->
-
-    <div class="description">
-        <br>
-        <hr>
-        <br>
-
-        <p class="heading" id="center">
-            <b>Final Product:</b>
-        </p>
-    </div>
-
-    <div class="image-container">
-        <img src="guitarbox/fp21.JPG" alt="Finished GuitarBox: cardboard box with the OLED screen on the front and buttons along the base" loading="lazy">
-        <img src="guitarbox/fp22.JPG" alt="Front view of the finished GuitarBox with the screen on" loading="lazy">
-    </div>
-
-    <div class="image-container">
-        <img src="guitarbox/fp23.JPG" alt="Close front view of the finished GuitarBox showing the OLED message" loading="lazy">
-        <img src="guitarbox/fp24.JPG" alt="Finished GuitarBox from an angle, with the speaker opening on top and a power bank beside it" loading="lazy">
-    </div>
-
-    <div class="image-container">
-        <img src="guitarbox/fp25.JPG" alt="Finished GuitarBox with the lid open to show the speaker mounted underneath" loading="lazy">
-        <img src="guitarbox/fp26.JPG" alt="Top-down view inside the box: Arduino, breadboard and wiring" loading="lazy">
-    </div>
-
+    <footer class="end">
+        <p>© 2026 Gavin Lim. Set in Work Sans.</p>
+        <p><a class="link" href="mailto:gl568@cornell.edu">gl568@cornell.edu</a></p>
+    </footer>
 </body>
 
 </html>
