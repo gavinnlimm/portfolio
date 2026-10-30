@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gavin Lim | Robotics and software, Cornell CS</title>
+    <meta name="description"
+        content="Gavin Lim studies computer science at Cornell with a robotics minor. Robot manipulation research in the HRC² Lab, combat robots and piano-string physics.">
+    <meta name="theme-color" content="#0d0e10">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="fonts/work-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="css/stage.css">
+    <link rel="stylesheet" href="css/site.css">
+    <script>document.documentElement.classList.add('js');</script>
+    <script src="js/vendor/gsap.min.js" defer></script>
+    <script src="js/vendor/ScrollTrigger.min.js" defer></script>
+    <script src="js/stage.js" defer></script>
+    <script src="js/scenes.js" defer></script>
+    <script src="js/site.js" defer></script>
+</head>
+
+<body>
+    <a class="skip" href="#numbers">Skip to content</a>
+
+    <!-- Hero: menu column + photograph -->
+    <header class="hero" id="top">
+        <div class="hero__sheet">
+            <nav class="hero__nav" aria-label="Main">
+                <a class="wordmark" href="#top" aria-label="Gavin Lim, home">Gavin Lim</a>
+                <div class="hero__links">
+                    <a class="link" href="#experience">Experience</a>
+                    <a class="link" href="#crc">Robots</a>
+                    <a class="link" href="#about">About</a>
+                    <a class="link" href="https://www.linkedin.com/in/gavinnlimm">LinkedIn</a>
+                </div>
+            </nav>
+
+            <div class="hero__body">
+                <h1 class="display lines">
+                    <span class="line"><span data-line style="--i:0">Hello!</span></span>
+                    <span class="line"><span data-line style="--i:1">I’m Gavin!</span></span>
+                </h1>
+                <p class="lead" data-load style="--d:420ms">I study computer science at Cornell, with a minor in robotics. Most
+                    days I’m teaching a robot to pick up a can, or building a small one that hits very hard.</p>
+                <div class="hero__actions" data-load style="--d:500ms">
+                    <a class="button" href="https://www.linkedin.com/in/gavinnlimm">Connect on LinkedIn</a>
+                    <a class="link" href="Gavin_Lim_Resume_2026.pdf">Résumé (PDF)</a>
+                    <a class="link" href="https://github.com/gavinnlimm">GitHub</a>
+                </div>
+            </div>
+
+            <p class="hero__now">Right now: building robot datasets to fine-tune a π0.5 policy for pick-and-place.</p>
+        </div>
+
+        <figure class="hero__picture" data-open>
+            <img src="img/gavin-portrait.jpg" width="1200" height="1600" fetchpriority="high"
+                alt="Gavin in a navy sweater and collared shirt, smiling at a restaurant table">
+            <figcaption class="hero__bar">
+                <span>Ithaca, New York</span>
+                <span>Cornell, class of 2028</span>
+            </figcaption>
+        </figure>
+    </header>
+
+    <main>
+        <!-- Scene: what I've measured (type family) -->
+        <section class="scene figures" id="numbers" data-scene="figures" data-options='{"hold": 3}'
+            aria-labelledby="numbers-title">
+            <div class="scene-stage">
+                <h2 class="figures__title" id="numbers-title">What I’ve measured</h2>
+                <ol class="figs" role="list">
+                    <li class="fig">
+                        <figure class="fig__pic"><img src="img/stretch-can.jpg" width="1200" height="1600" loading="lazy" alt="The Stretch holding a can in its gripper"></figure>
+                        <p class="fig__num"><span>20</span></p>
+                        <p class="fig__cap"><span class="fig__count">1 of 4</span>End-to-end runs of my Stretch pick-and-place pipeline at the HRC² Lab, with no human input.</p>
+                    </li>
+                    <li class="fig">
+                        <figure class="fig__pic"><img src="img/stretch-rviz.jpg" width="1600" height="1200" loading="lazy" alt="RViz view of the Stretch localized on its map"></figure>
+                        <p class="fig__num"><span>&lt;1&nbsp;cm</span></p>
+                        <p class="fig__cap"><span class="fig__count">2 of 4</span>How closely the robot’s depth perception finds the can it is about to grab.</p>
+                    </li>
+                    <li class="fig">
+                        <figure class="fig__pic"><img src="img/california-roll.png" width="1120" height="748" loading="lazy" alt="CAD render of California Roll"></figure>
+                        <p class="fig__num"><span>1&nbsp;lb</span></p>
+                        <p class="fig__cap"><span class="fig__count">3 of 4</span>California Roll, the antweight vertical drum spinner I engineered for NHRL with Combat Robotics.</p>
+                    </li>
+                    <li class="fig">
+                        <figure class="fig__pic"><img src="img/tuning-box-front.jpg" width="1600" height="1200" loading="lazy" alt="GuitarBox, the cardboard Arduino tuner"></figure>
+                        <p class="fig__num"><span>10</span></p>
+                        <p class="fig__cap"><span class="fig__count">4 of 4</span>GuitarBox tuners I built and gave to guitarists in Cambridge.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Experience: sticky picture, active list -->
+        <section class="experience" id="experience" aria-labelledby="experience-title">
+            <h2 class="head experience__title" id="experience-title" data-reveal>Experience</h2>
+            <div class="experience__stage" aria-hidden="true">
+                <div class="experience__frame">
+                    <!-- HRC² Lab: the Stretch -->
+                    <figure class="plate plate--photo is-active" data-for="0">
+                        <img src="img/stretch-can.jpg" width="1200" height="1600" loading="lazy"
+                            alt="The lab’s Hello Robot Stretch holding a can in its gripper beside a table marked with ArUco tags">
+                        <figcaption>The Stretch, mid pick-and-place</figcaption>
+                    </figure>
+
+                    <figure class="plate plate--photo" data-for="1">
+                        <img src="img/crc-team-2026.jpg" width="1800" height="1202" loading="lazy"
+                            alt="The Combat Robotics at Cornell team in their workshop, holding their robots">
+                        <figcaption>Combat Robotics at Cornell</figcaption>
+                    </figure>
+
+                    <!-- Princeton: string modes -->
+                    <figure class="plate plate--draw plate--formula" data-for="2">
+                        <p class="plate__formula">λ = 4ρπ³r²lv² / k</p>
+                        <svg viewBox="0 0 400 500" role="img"
+                            aria-label="The first four vibration modes of a string fixed at both ends">
+                            <g class="modes" fill="none" stroke-width="5" stroke-linecap="round">
+                                <path class="stroke-ink" d="M40 90 Q200 10 360 90" />
+                                <path class="stroke-ink" d="M40 200 Q120 140 200 200 T360 200" />
+                                <path class="stroke-ink"
+                                    d="M40 310 Q93 260 147 310 T253 310 T360 310" />
+                                <path class="stroke-accent"
+                                    d="M40 420 Q80 380 120 420 T200 420 T280 420 T360 420" />
+                            </g>
+                            <g class="fill-ink">
+                                <circle cx="40" cy="90" r="7" /><circle cx="360" cy="90" r="7" />
+                                <circle cx="40" cy="200" r="7" /><circle cx="360" cy="200" r="7" />
+                                <circle cx="40" cy="310" r="7" /><circle cx="360" cy="310" r="7" />
+                                <circle cx="40" cy="420" r="7" /><circle cx="360" cy="420" r="7" />
+                            </g>
+                        </svg>
+                        <figcaption>My model: stiffer string, shorter wave</figcaption>
+                    </figure>
+                </div>
+            </div>
+
+            <div class="experience__list">
+                <ul class="rows" role="list">
+                    <li class="row row--lead is-active is-current" data-index="0" data-reveal>
+                        <button class="row__head" aria-expanded="true" aria-controls="exp-0">
+                            <span class="row__name">HRC² Lab, Cornell</span>
+                            <span class="row__when">2026–now</span>
+                            <span class="row__icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="row__body" id="exp-0">
+                            <div>
+                                <p><strong>Undergraduate researcher</strong> in the <a class="link" href="https://hrc2.io/people/">Human-Robot
+                                        Collaboration &amp; Companionship Lab</a>, advised by Prof. Guy Hoffman. I built a
+                                    one-command ROS&nbsp;2 pipeline that has a Hello Robot Stretch navigate, grasp a can
+                                    and place it on another table: 20 runs end to end with no human input. Depth
+                                    perception finds the can to under 1&nbsp;cm. Now I’m building the datasets to
+                                    fine-tune a π0.5 VLA policy. <a class="link"
+                                        href="https://github.com/gavinnlimm/stretch-picknplace">See the code on GitHub</a></p>
+                                <figure class="row__shot">
+                                    <img src="img/stretch-rviz.jpg" width="1600" height="1200" loading="lazy"
+                                        alt="RViz showing the Nav2 costmap and the Stretch localized on its map after reaching a goal">
+                                    <figcaption>Nav2 in RViz: the Stretch has reached its goal</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="row" data-index="1" data-reveal>
+                        <button class="row__head" aria-expanded="false" aria-controls="exp-1">
+                            <span class="row__name">Combat Robotics at Cornell</span>
+                            <span class="row__when">2025–now</span>
+                            <span class="row__icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="row__body" id="exp-1">
+                            <div>
+                                <p><strong>Mechanical subteam, CV teleoperation sub-lead and new-member trainer.</strong>
+                                    I built the YOLOv11-Pose pipeline that turns a driver’s body into throttle, steering
+                                    and weapon commands, with a failsafe that cuts every motor when tracking is lost. I
+                                    also engineered California Roll, a 1&nbsp;lb vertical drum spinner for NHRL. <a class="link"
+                                        href="#crc">See the robots</a></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="row" data-index="2" data-reveal>
+                        <button class="row__head" aria-expanded="false" aria-controls="exp-2">
+                            <span class="row__name">Piano-string physics, Princeton</span>
+                            <span class="row__when">2024</span>
+                            <span class="row__icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="row__body" id="exp-2">
+                            <div>
+                                <p><strong>Student researcher</strong>, mentored by Dr. LaNell Williams. My question: when a
+                                    piano string gets stiffer, what happens to its sound? I derived a model from Hooke’s
+                                    Law and simple harmonic motion, then pushed it through three simulations, from
+                                    made-up spring constants to real piano strings at 66,000–80,000&nbsp;N/m. Against
+                                    published measurements it held up: stiffer strings ring higher, with shorter waves.
+                                    Where the real data drifted, worn strings were the likely culprit. <a class="link"
+                                        href="docs/Gavin_Lim_Piano_String_Stiffness.pdf">Read the paper (PDF)</a></p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Combat Robotics: photographs and California Roll -->
+        <section class="crc" id="crc" aria-labelledby="crc-title">
+            <figure class="crc__lead" data-reveal>
+                <img src="img/crc-nhrl.jpg" width="1800" height="1350" loading="lazy"
+                    alt="Five Combat Robotics at Cornell members at NHRL holding their antweight robots and transmitters">
+                <figcaption>At NHRL with the antweights</figcaption>
+            </figure>
+            <div class="crc__text">
+                <h2 class="head" id="crc-title" data-reveal>Combat Robotics</h2>
+                <p data-reveal>I’m on the mechanical subteam at Combat Robotics at Cornell, lead the computer-vision
+                    teleoperation project and train new members. We design, machine and fight our own robots at NHRL.
+                </p>
+            </div>
+            <figure class="crc__side" data-reveal>
+                <img src="img/crc-arena.jpg" width="1600" height="1200" loading="lazy"
+                    alt="Team members driving robots in a clear-walled demo arena under a tent while students watch">
+                <figcaption>Driving demo bots for new members</figcaption>
+            </figure>
+            <div class="crc__bot">
+                <img src="img/california-roll.png" width="1120" height="748" loading="lazy" data-reveal
+                    alt="CAD render of California Roll: a red vertical drum weapon, aluminum side plates and red treaded wheels">
+                <div class="crc__bottext" data-reveal>
+                    <h3 class="crc__name">California Roll</h3>
+                    <p>A 1&nbsp;lb vertical drum spinner I built for NHRL in spring 2026: a toothed high-energy drum,
+                        2WD skid-steer drive and a chassis designed for manufacturing and assembly.</p>
+                    <a class="link" href="docs/California_Roll_Report_Spring_2026.pdf">Read the final report (PDF)</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene: GuitarBox opens (picture family) -->
+        <section class="scene open" id="guitarbox" data-scene="open" data-options='{"hold": 2}'
+            aria-labelledby="guitarbox-title">
+            <div class="scene-stage">
+                <figure class="open__win">
+                    <img src="img/tuning-box-front.jpg" width="1600" height="1200" loading="lazy"
+                        alt="GuitarBox: a press-fit cardboard box with an OLED screen and a row of six buttons">
+                </figure>
+                <h2 class="open__title" id="guitarbox-title">GuitarBox</h2>
+                <p class="open__cap">An Arduino guitar tuner I built at Harvard in 2024. Six buttons, one per string,
+                    82 to 330 Hz. I made ten of them for guitarists in Cambridge.</p>
+            </div>
+        </section>
+
+        <!-- The live thing -->
+        <section class="play" id="play" aria-labelledby="play-title">
+            <div class="play__text">
+                <h2 class="head" id="play-title" data-reveal>Play GuitarBox</h2>
+                <p data-reveal>Six buttons, one per guitar string. Each plays the pitch my Arduino sent to its speaker
+                    in 2024, the same square wave, rounded to the same whole hertz. The screen says what its OLED said.
+                </p>
+                <p data-reveal>Hold a guitar up to your speakers and tune against it, or <a class="link"
+                        href="guitarbox.html">read how I built it</a>.</p>
+                <figure class="play__clip" data-reveal>
+                    <video data-loop muted loop playsinline preload="none" poster="img/guitarbox-demo-poster.jpg"
+                        width="1280" height="720" aria-label="My hand pressing the prototype’s buttons as the OLED shows each string">
+                        <source src="img/guitarbox-demo.mp4" type="video/mp4">
+                    </video>
+                    <figcaption>The 2024 prototype on a breadboard</figcaption>
+                </figure>
+            </div>
+
+            <div class="box" data-ui data-reveal>
+                <div class="box__screen" aria-live="polite">
+                    <canvas class="box__wave" width="512" height="96" aria-hidden="true"></canvas>
+                    <p class="box__note">E2</p>
+                    <p class="box__string">String 1, 82 Hz</p>
+                </div>
+                <div class="box__keys" role="group" aria-label="Guitar strings">
+                    <button class="key" data-hz="82" data-note="E2" data-string="1"><span>E2</span><small>82
+                            Hz</small></button>
+                    <button class="key" data-hz="110" data-note="A2" data-string="2"><span>A2</span><small>110
+                            Hz</small></button>
+                    <button class="key" data-hz="147" data-note="D3" data-string="3"><span>D3</span><small>147
+                            Hz</small></button>
+                    <button class="key" data-hz="196" data-note="G3" data-string="4"><span>G3</span><small>196
+                            Hz</small></button>
+                    <button class="key" data-hz="247" data-note="B3" data-string="5"><span>B3</span><small>247
+                            Hz</small></button>
+                    <button class="key" data-hz="330" data-note="E4" data-string="6"><span>E4</span><small>330
+                            Hz</small></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About: letter -->
+        <section class="about" id="about" aria-labelledby="about-title">
+            <div class="about__text">
+                <h2 class="head" id="about-title">About me</h2>
+                <p>I grew up in Jakarta and study computer science at Cornell, with a minor in robotics.
+                    When I’m not in the lab or the machine shop, these have my attention:</p>
+                <figure class="about__photo">
+                    <img src="img/gavin-snow.jpg" width="1394" height="1303" loading="lazy"
+                        alt="Gavin in a black puffer jacket, arms spread wide, on a frozen lake at dusk">
+                </figure>
+            </div>
+            <ul class="interests" role="list" aria-label="Interests">
+                <li>Battlebots</li>
+                <li>Garmin watches</li>
+                <li>Hybrid training</li>
+                <li>Trophy trucks</li>
+                <li>Acoustic guitar</li>
+            </ul>
+        </section>
+
+        <!-- Contact -->
+        <section class="contact" id="contact" aria-labelledby="contact-title">
+            <h2 class="visually-hidden" id="contact-title">Contact</h2>
+            <p class="contact__line">Building something with robots, or just want to talk shop? I’d like
+                to hear from you.</p>
+            <img class="contact__face" src="img/gavin-portrait.jpg" width="1200" height="1600" loading="lazy" alt="">
+            <div class="contact__links">
+                <p class="contact__ask">Best way to reach me</p>
+                <a class="link" href="mailto:gl568@cornell.edu?subject=Hello%20Gavin">gl568@cornell.edu</a>
+                <a class="link" href="https://www.linkedin.com/in/gavinnlimm">LinkedIn</a>
+                <a class="link" href="Gavin_Lim_Resume_2026.pdf">Résumé (PDF)</a>
+                <p class="contact__where">Based in Ithaca, New York</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="foot">
+        <img class="foot__img" src="img/crc-night.jpg" width="2000" height="1500" loading="lazy" alt="">
+        <div class="foot__top">
+            <nav aria-label="Footer">
+                <a class="link" href="#experience">Experience</a>
+                <a class="link" href="#crc">Robots</a>
+                <a class="link" href="#guitarbox">GuitarBox</a>
+                <a class="link" href="#about">About</a>
+            </nav>
+            <div class="foot__reach">
+                <a class="link" href="mailto:gl568@cornell.edu">gl568@cornell.edu</a>
+                <a class="link" href="https://www.linkedin.com/in/gavinnlimm">LinkedIn</a>
+                <a class="link" href="https://github.com/gavinnlimm">GitHub</a>
+            </div>
+        </div>
+        <div class="foot__bottom">
+            <p class="foot__name" aria-hidden="true">Gavin Lim</p>
+            <p class="foot__legal">© 2026 Gavin Lim. Set in Work Sans.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
