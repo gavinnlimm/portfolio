@@ -34,6 +34,16 @@
     }, { rootMargin: '-80px 0px 0px 0px' }).observe(hero);
   }
 
+  /* Email: opens the mail app, and also copies the address for people without one set up. */
+  document.querySelectorAll('[data-copy]').forEach((a) => {
+    a.addEventListener('click', () => {
+      try { navigator.clipboard.writeText(a.dataset.copy); } catch (e) { /* mailto still runs */ }
+      const t = a.textContent;
+      a.textContent = 'Copied ' + a.dataset.copy;
+      setTimeout(() => { a.textContent = t; }, 2500);
+    });
+  });
+
   /* Experience. "Current" (full ink + its picture) follows hover, focus and scroll;
      "open" (the description) changes only on click or Enter, so nothing reflows under the pointer. */
   const rows = [...document.querySelectorAll('.row')];

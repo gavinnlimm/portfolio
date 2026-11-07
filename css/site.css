@@ -393,23 +393,24 @@ strong {
     object-fit: cover;
 }
 
-/* HRC²: the Stretch with the lab's objects set into its corner */
-.plate--collage > img:first-child {
+/* HRC²: a mosaic of the Stretch at work */
+.plate--collage {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 4px;
+    background: var(--bg);
+}
+
+.plate--collage > img {
     width: 100%;
     height: 100%;
+    min-height: 0;
     object-fit: cover;
 }
 
-.plate__inset {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 58%;
-    height: auto;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    border: 6px solid var(--bg);
-    border-width: 0 0 6px 6px;
+.plate--collage figcaption {
+    z-index: 1;
 }
 
 .plate--draw {
@@ -1090,8 +1091,8 @@ strong {
     gap: 16px;
     min-height: 56px;
     padding: 0 var(--m);
-    background: var(--bg);
-    box-shadow: 0 1px 0 var(--surface);
+    background: var(--surface);
+    box-shadow: 0 1px 0 rgba(236, 235, 230, 0.18), 0 8px 24px rgba(0, 0, 0, 0.45);
     transform: translateY(-100%);
     visibility: hidden;
     transition: transform var(--t-ui) var(--ease-out), visibility 0s linear var(--t-ui);
@@ -1107,9 +1108,9 @@ strong {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    color: var(--muted);
+    color: var(--ink);
     text-decoration: none;
-    font-size: var(--step-small);
+    font-size: var(--step-body);
     white-space: nowrap;
     transition: color var(--t-hover) ease;
 }
@@ -1127,7 +1128,22 @@ strong {
 }
 
 .dock__links a[aria-current] {
-    color: var(--ink);
+    color: var(--accent-strong);
+}
+
+.dock .dock__email {
+    padding: 0 16px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 500;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .dock .dock__email:hover {
+        background: var(--accent-deep);
+        color: var(--accent-ink);
+    }
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1137,12 +1153,25 @@ strong {
 }
 
 @media (max-width: 560px) {
-    .dock .dock__about {
+    .dock .dock__about,
+    .dock__links a[href="#guitarbox"] {
         display: none;
+    }
+
+    .dock a {
+        font-size: var(--step-small);
+    }
+
+    .dock .dock__name {
+        font-size: var(--step-body);
     }
 
     .dock__links {
         gap: 0 14px;
+    }
+
+    .dock .dock__email {
+        padding: 0 12px;
     }
 }
 
@@ -1373,11 +1402,6 @@ mark {
 
     .plate figcaption {
         display: none;
-    }
-
-    .plate__inset {
-        width: 42%;
-        border-width: 0 0 4px 4px;
     }
 
     .experience__frame {
