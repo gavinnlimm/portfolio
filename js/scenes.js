@@ -20,6 +20,14 @@
         const pic = fig.querySelector('.fig__pic');
         const img = fig.querySelector('.fig__pic img');
         const t0 = i * seg;
+        // count the figure up as it arrives
+        const target = parseFloat(num.textContent.replace(/[^0-9.]/g, ''));
+        if (i > 0 && target >= 2) {
+          const unit = num.textContent.replace(/[0-9.]/g, '');
+          const o = { v: 0 };
+          const tick = () => { num.textContent = Math.round(o.v) + unit; };
+          tl.fromTo(o, { v: 0 }, { v: target, duration: seg * 0.3, ease: 'power2.out', onUpdate: tick }, Math.max(0, t0 - seg * 0.16));
+        }
         // the photo wipes up from below as its number rises; both leave upward before the next arrives
         if (i > 0) {
           tl.fromTo(pic, { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: seg * 0.3, ease: 'power3.inOut' }, t0 - seg * 0.36);

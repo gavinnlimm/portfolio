@@ -54,6 +54,8 @@
   function setCurrent(i) {
     rows.forEach((row, k) => row.classList.toggle('is-current', k === i));
     plates.forEach((p) => p.classList.toggle('is-active', Number(p.dataset.for) === i));
+    const frame = document.querySelector('.experience__frame');
+    if (frame) frame.dataset.active = String(i);
   }
   function setOpen(i) {
     rows.forEach((row, k) => {

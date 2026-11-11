@@ -76,7 +76,7 @@
 
     <main>
         <!-- Scene: four numbers, each with its proof (type family) -->
-        <section class="scene figures" id="numbers" data-scene="figures" data-options='{"hold": 2}'
+        <section class="scene figures" id="numbers" data-scene="figures" data-options='{"hold": 1.1}'
             aria-labelledby="numbers-title">
             <div class="scene-stage">
                 <h2 class="figures__title" id="numbers-title">My work in four numbers</h2>
@@ -112,22 +112,18 @@
                 <div class="experience__frame">
                     <!-- HRC² Lab: the Stretch, and the objects it learns to pick -->
                     <figure class="plate plate--collage is-active" data-for="0">
-                        <img src="img/stretch-arm.jpg" width="1200" height="1600" loading="lazy"
-                            alt="The Stretch extending its arm to hold a can over a bin on a table marked with ArUco tags, with the lab behind it">
-                        <img src="img/stretch-pick.gif" width="400" height="225" loading="lazy"
-                            alt="Animation of the Stretch reaching out and picking up a can from the table">
-                        <img src="img/stretch-drop.gif" width="400" height="225" loading="lazy"
-                            alt="Animation of the Stretch dropping the can into a yellow bin">
-                        <img src="img/stretch-bin.jpg" width="1600" height="900" loading="lazy"
-                            alt="The Stretch holding a can above a yellow bin, with soda cans and a laptop on the table">
-                        <img src="img/stretch-can.jpg" width="1200" height="1600" loading="lazy"
-                            alt="The lab’s Hello Robot Stretch holding a can in its gripper beside a table marked with ArUco tags">
-                        <img src="img/stretch-objects.jpg" width="1600" height="1200" loading="lazy"
+                        <img class="c-map" src="img/stretch-rviz.jpg" width="1600" height="1200" loading="lazy"
+                            alt="RViz showing the navigation costmap and the Stretch localized on its map after reaching a goal">
+                        <img class="c-objects" src="img/stretch-objects.jpg" width="1600" height="1200" loading="lazy"
                             alt="A can, a paper cup, a carton, a food tin and a soda bottle lined up on a lab table behind two ArUco markers">
-                        <figcaption>The Stretch picking, placing and the objects it works with</figcaption>
+                        <img class="c-pick" src="img/stretch-pick.gif" width="400" height="225" loading="lazy"
+                            alt="Animation of the Stretch reaching out and picking up a can from the table">
+                        <img class="c-drop" src="img/stretch-drop.gif" width="400" height="225" loading="lazy"
+                            alt="Animation of the Stretch dropping the can into a yellow bin">
+                        <figcaption>The Stretch picking up a can and dropping it in the bin</figcaption>
                     </figure>
 
-                    <figure class="plate plate--photo" data-for="1">
+                    <figure class="plate plate--photo plate--whole" data-for="1">
                         <img src="img/crc-team-2026.jpg" width="1800" height="1202" loading="lazy"
                             alt="The Combat Robotics at Cornell team in their workshop, holding their robots">
                         <figcaption>Combat Robotics at Cornell</figcaption>
@@ -162,6 +158,7 @@
                 <ul class="rows" role="list">
                     <li class="row row--lead is-active is-current" data-index="0" data-reveal>
                         <button class="row__head" aria-expanded="true" aria-controls="exp-0">
+                            <span class="row__num" aria-hidden="true">01</span>
                             <span class="row__name">HRC² Lab, Cornell</span>
                             <span class="row__when">2026–now</span>
                             <span class="row__icon" aria-hidden="true"></span>
@@ -181,6 +178,7 @@
                     </li>
                     <li class="row" data-index="1" data-reveal>
                         <button class="row__head" aria-expanded="false" aria-controls="exp-1">
+                            <span class="row__num" aria-hidden="true">02</span>
                             <span class="row__name">Combat Robotics at Cornell</span>
                             <span class="row__when">2025–now</span>
                             <span class="row__icon" aria-hidden="true"></span>
@@ -192,12 +190,14 @@
                                     and weapon commands, with a failsafe that cuts every motor when tracking is lost. I
                                     also engineered our antweight, California Roll. <a class="link"
                                         href="#crc">See the robots</a></p>
+                                <ul class="row__tags" role="list"><li>YOLOv11-Pose</li><li>CV teleoperation</li><li>Mechanical design</li><li>Failsafe</li></ul>
                             </div>
                         </div>
                     </li>
                     <li class="row" data-index="2" data-reveal>
                         <button class="row__head" aria-expanded="false" aria-controls="exp-2">
-                            <span class="row__name">Piano-string physics, Princeton</span>
+                            <span class="row__num" aria-hidden="true">03</span>
+                            <span class="row__name">Acoustic physics, Princeton</span>
                             <span class="row__when">2024</span>
                             <span class="row__icon" aria-hidden="true"></span>
                         </button>
@@ -210,6 +210,7 @@
                                     published measurements it held up: stiffer strings ring higher, with shorter waves.
                                     Where the real data drifted, worn strings were the likely culprit. <a class="link"
                                         href="docs/Gavin_Lim_Piano_String_Stiffness.pdf">Read the paper (PDF)</a></p>
+                                <ul class="row__tags" role="list"><li>Hooke’s Law</li><li>Harmonic motion</li><li>3 simulations</li><li>Piano strings</li></ul>
                             </div>
                         </div>
                     </li>
